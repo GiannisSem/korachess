@@ -10,7 +10,7 @@ interface ArrowsLayerProps {
 
 export const ArrowsLayer: React.FC<ArrowsLayerProps> = ({
                                                             arrows,
-                                                            defaultColor = 'rgba(255, 170, 0, 0.8)',
+                                                            defaultColor = 'rgb(255, 170, 0, 1)',
                                                             reversed,
                                                         }) => {
     if (arrows.length === 0) return null;
@@ -52,7 +52,7 @@ export const ArrowsLayer: React.FC<ArrowsLayerProps> = ({
                         x2={x2}
                         y2={y2}
                         stroke={strokeColor}
-                        strokeWidth="16"
+                        strokeWidth="12"
                         strokeLinecap="round"
                         markerEnd="url(#arrowhead)"
                     />

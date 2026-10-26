@@ -54,10 +54,10 @@ export const ChessBoard: React.FC<ChessBoardProps> = (props) => {
             <HintsLayer moves={legalMoves} game={game} reversed={reversed} />
 
             {/* Layer Frecce Utente (arancione) */}
-            <ArrowsLayer arrows={userArrows} reversed={reversed} defaultColor="rgba(255, 170, 0, 0.8)" />
+            <ArrowsLayer arrows={userArrows} reversed={reversed} defaultColor="rgba(255, 170, 0, 1)" />
 
             {/* Layer Frecce Motore (blu/verde) */}
-            <ArrowsLayer arrows={engineArrows} reversed={reversed} defaultColor="rgba(0, 140, 255, 0.8)" />
+            <ArrowsLayer arrows={engineArrows} reversed={reversed} defaultColor="rgba(0, 140, 255, 1)" />
 
             {pendingPromotion && (
                 <PiecePicker
