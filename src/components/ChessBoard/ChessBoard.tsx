@@ -15,7 +15,7 @@ import styles from './ChessBoard.module.css';
 export const ChessBoard: React.FC<ChessBoardProps> = (props) => {
     const {
         reversed = false,
-        theme = { light: '#EBECD0', dark: '#779556' },
+        theme = { name: 'green', light: '#EBECD0', dark: '#779556' },
         engineArrows = [],
     } = props;
 

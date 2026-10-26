@@ -32,12 +32,12 @@ export const BoardGrid: React.FC<BoardGridProps> = ({ theme, reversed, onSquareC
                         onClick={() => onSquareClick(square)}
                     >
                         {showRank && (
-                            <span className={styles.coordRank} style={{ color: textColor }}>
+                            <span className={styles.coordRank} style={{ color: textColor, fontSize: 30 }}>
                 {reversed ? RANKS[row] : RANKS[7 - row]}
               </span>
                         )}
                         {showFile && (
-                            <span className={styles.coordFile} style={{ color: textColor }}>
+                            <span className={styles.coordFile} style={{ color: textColor, fontSize: 30  }}>
                 {reversed ? FILES[7 - col] : FILES[col]}
               </span>
                         )}
