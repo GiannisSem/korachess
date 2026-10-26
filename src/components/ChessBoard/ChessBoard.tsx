@@ -10,12 +10,14 @@ import { HintsLayer } from './layers/HintsLayer';
 import { ArrowsLayer } from './layers/ArrowsLayer';
 import { PiecePicker } from './layers/PiecePicker';
 
+import themes from '../../assets/themes.json'
+
 import styles from './ChessBoard.module.css';
 
 export const ChessBoard: React.FC<ChessBoardProps> = (props) => {
     const {
         reversed = false,
-        theme = { light: '#EBECD0', dark: '#779556' },
+        theme = themes[0],
         engineArrows = [],
     } = props;
 

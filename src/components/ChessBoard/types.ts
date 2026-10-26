@@ -17,6 +17,7 @@ export interface ArrowData {
 }
 
 export interface BoardTheme {
+    name: string;
     light: string;
     dark: string;
 }

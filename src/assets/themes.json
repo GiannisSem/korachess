@@ -1,0 +1,5 @@
+[
+  { "name": "green", "light": "#EBECD0", "dark": "#779556" },
+  { "name": "blue", "light": "#EBECD0", "dark": "#397ac4" },
+  { "name": "classic", "light": "#ECDAB9", "dark": "#C5A076" }
+]
