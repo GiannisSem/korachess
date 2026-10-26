@@ -12,6 +12,7 @@ export function useChessGame({
                              }: ChessBoardProps) {
     const chessRef = useRef(new Chess(initialFen));
     const [fen, setFen] = useState(initialFen);
+    const [isViewOnly, setViewOnly] = useState(viewOnly);
     const [selectedSquare, setSelectedSquare] = useState<Square | null>(null);
     const [legalMoves, setLegalMoves] = useState<Move[]>([]);
     const [lastMove, setLastMove] = useState<{ from: Square; to: Square } | null>(null);
@@ -23,15 +24,16 @@ export function useChessGame({
             if (game.isCheckmate()) onEndGame('checkmate');
             else if (game.isStalemate()) onEndGame('stalemate');
             else if (game.isDraw()) onEndGame('draw');
+            setViewOnly(true);
         }
     }, [onEndGame]);
 
     useEffect(() => {
-        if (!viewOnly) return;
+        if (!isViewOnly) return;
         setSelectedSquare(null);
         setLegalMoves([]);
         setPendingPromotion(null);
-    }, [viewOnly]);
+    }, [isViewOnly]);
 
     // Gestione mossa in ingresso da Stockfish
     useEffect(() => {
@@ -76,7 +78,7 @@ export function useChessGame({
     }, [onMove, checkGameEnd]);
 
     const handleSquareClick = useCallback((square: Square) => {
-        if (viewOnly || pendingPromotion) return;
+        if (isViewOnly || pendingPromotion) return;
 
         const game = chessRef.current;
         const piece = game.get(square);
@@ -109,13 +111,13 @@ export function useChessGame({
 
         setSelectedSquare(null);
         setLegalMoves([]);
-    }, [viewOnly, pendingPromotion, playerColor, selectedSquare, legalMoves, executeMove]);
+    }, [pendingPromotion, playerColor, selectedSquare, legalMoves, executeMove]);
 
     const confirmPromotion = useCallback((pieceSymbol: any) => {
-        if (viewOnly || !pendingPromotion) return;
+        if (isViewOnly || !pendingPromotion) return;
         executeMove(pendingPromotion.from, pendingPromotion.to, pieceSymbol);
         setPendingPromotion(null);
-    }, [viewOnly, pendingPromotion, executeMove]);
+    }, [pendingPromotion, executeMove]);
 
     return {
         game: chessRef.current,

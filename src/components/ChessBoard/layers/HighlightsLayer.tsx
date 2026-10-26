@@ -30,11 +30,11 @@ export const HighlightsLayer: React.FC<HighlightsLayerProps> = ({
         }
     }
 
-    const renderHighlight = (square: Square, color: string) => {
+    const renderHighlight = (square: Square, color: string, role: string) => {
         const { x, y } = squareToPercent(square, reversed);
         return (
             <div
-                key={square}
+                key={`${role}-${square}`}
                 style={{
                     position: 'absolute',
                     left: `${x}%`,
@@ -50,10 +50,10 @@ export const HighlightsLayer: React.FC<HighlightsLayerProps> = ({
 
     return (
         <div className={styles.layer}>
-            {lastMove && renderHighlight(lastMove.from, 'rgba(255, 255, 0, 0.4)')}
-            {lastMove && renderHighlight(lastMove.to, 'rgba(255, 255, 0, 0.4)')}
-            {selectedSquare && renderHighlight(selectedSquare, 'rgba(20, 85, 30, 0.5)')}
-            {checkSquare && renderHighlight(checkSquare, 'radial-gradient(ellipse at center, red 0%, transparent 75%)')}
+            {lastMove && renderHighlight(lastMove.from, 'rgba(255, 255, 0, 0.4)', 'last-from')}
+            {lastMove && renderHighlight(lastMove.to, 'rgba(255, 255, 0, 0.4)', 'last-to')}
+            {selectedSquare && renderHighlight(selectedSquare, 'rgba(20, 85, 30, 0.5)', 'selected')}
+            {checkSquare && renderHighlight(checkSquare, 'radial-gradient(ellipse at center, red 0%, transparent 75%)', 'check')}
         </div>
     );
 };

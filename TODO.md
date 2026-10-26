@@ -25,3 +25,6 @@ FUNZIONALITA' PLUS
 - Esporta pgn.
 - Apri nalisi con lichess.
 - Frecce o tasti <- -> per movimento tra mosse.
+
+FIXES:
+- annulla promozione.

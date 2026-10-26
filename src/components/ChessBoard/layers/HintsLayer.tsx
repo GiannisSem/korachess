@@ -9,16 +9,23 @@ interface HintsLayerProps {
     reversed: boolean;
 }
 
-export const HintsLayer: React.FC<HintsLayerProps> = ({ moves, game, reversed }) => {
+export const HintsLayer: React.FC<HintsLayerProps> = ({ moves, reversed }) => {
+    const destinations = new Set<string>();
+    const uniqueMoves = moves.filter((move) => {
+        if (destinations.has(move.to)) return false;
+        destinations.add(move.to);
+        return true;
+    });
+
     return (
         <div className={styles.layer}>
-            {moves.map((m) => {
+            {uniqueMoves.map((m) => {
                 const { x, y } = squareToPercent(m.to, reversed);
-                const isCapture = !!game.get(m.to) || m.flags.includes('e');
+                const isCapture = m.isCapture();
 
                 return (
                     <div
-                        key={m.to}
+                        key={m.san}
                         style={{
                             position: 'absolute',
                             left: `${x}%`,
