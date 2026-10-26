@@ -27,4 +27,3 @@ FUNZIONALITA' PLUS
 - Frecce o tasti <- -> per movimento tra mosse.
 
 FIXES:
-- annulla promozione.

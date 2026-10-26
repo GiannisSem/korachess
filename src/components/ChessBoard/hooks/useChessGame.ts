@@ -115,6 +115,10 @@ export function useChessGame({
 
     const confirmPromotion = useCallback((pieceSymbol: any) => {
         if (isViewOnly || !pendingPromotion) return;
+        if (!pieceSymbol) {
+            setPendingPromotion(null);
+            return;
+        }
         executeMove(pendingPromotion.from, pendingPromotion.to, pieceSymbol);
         setPendingPromotion(null);
     }, [pendingPromotion, executeMove]);

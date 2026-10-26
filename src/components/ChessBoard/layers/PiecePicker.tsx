@@ -6,7 +6,7 @@ import { squareToPercent } from '../utils/coordinates';
 interface PiecePickerProps {
     promotion: PendingPromotion;
     reversed: boolean;
-    onSelect: (piece: PieceSymbol) => void;
+    onSelect: (piece: PieceSymbol | null) => void;
 }
 
 export const PiecePicker: React.FC<PiecePickerProps> = ({ promotion, reversed, onSelect }) => {
@@ -51,6 +51,24 @@ export const PiecePicker: React.FC<PiecePickerProps> = ({ promotion, reversed, o
                     />
                 </div>
             ))}
+            <div
+                key={'x'}
+                onClick={(e) => {
+                    e.stopPropagation();
+                    onSelect(null);
+                }}
+                style={{
+                    flex: 1,
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    cursor: 'pointer',
+                    color: 'red',
+                    fontSize: 50
+                }}
+            >
+                x
+            </div>
         </div>
     );
 };
