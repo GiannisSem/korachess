@@ -1,0 +1,413 @@
+[
+  {
+    "color": "w",
+    "opening": "Scotch Game",
+    "lines": [
+      [
+        "Main Line",
+        "1. e4 e5 2. Nf3 Nc6 3. d4"
+      ],
+      [
+        "Main Line",
+        "1. e4 e5 2. Nf3 Nc6 3. d4 exd4"
+      ],
+      [
+        "Benima Defense",
+        "1. e4 e5 2. Nf3 Nc6 3. Bc4 Be7 4. d4 exd4"
+      ],
+      [
+        "Cochrane Variation",
+        "1. e4 e5 2. Nf3 Nc6 3. d4 exd4 4. Bc4 Bb4+ 5. c3 dxc3 6. bxc3 Ba5 7. e5"
+      ],
+      [
+        "Cochrane-Shumov Defense",
+        "1. e4 e5 2. Nf3 Nc6 3. d4 exd4 4. Bc4 Bc5 5. Ng5 Nh6 6. Nxf7 Nxf7 7. Bxf7+ Kxf7 8. Qh5+ g6 9. Qxc5 d5"
+      ],
+      [
+        "Göring Gambit",
+        "1. e4 e5 2. Nf3 Nc6 3. d4 exd4 4. c3"
+      ],
+      [
+        "Göring Gambit, Bardeleben Variation",
+        "1. e4 e5 2. Nf3 Nc6 3. d4 exd4 4. c3 dxc3 5. Bc4 Nf6 6. Nxc3 Bb4"
+      ],
+      [
+        "Göring Gambit, Double Pawn Sacrifice",
+        "1. e4 e5 2. Nf3 Nc6 3. d4 exd4 4. c3 dxc3 5. Bc4"
+      ],
+      [
+        "Göring Gambit, Main Line",
+        "1. e4 e5 2. Nf3 Nc6 3. d4 exd4 4. c3 dxc3 5. Nxc3 Bb4"
+      ],
+      [
+        "Hanneken Variation",
+        "1. e4 e5 2. Nf3 Nc6 3. d4 exd4 4. Bc4 Bb4+ 5. c3 dxc3 6. O-O cxb2 7. Bxb2 Nf6 8. Ng5 O-O 9. e5 Nxe5"
+      ]
+    ]
+  },
+  {
+    "color": "w",
+    "opening": "London System",
+    "lines": [
+      [
+        "Main Line",
+        "1. d4 Nf6 2. Nf3 g6 3. Bf4"
+      ],
+      [
+        "Main Line",
+        "1. d4 Nf6 2. Nf3 g6 3. Bf4 Bg7 4. e3"
+      ],
+      [
+        "Main Line",
+        "1. d4 Nf6 2. Nf3 g6 3. Bf4 Bg7 4. e3 d6"
+      ],
+      [
+        "Main Line",
+        "1. d4 Nf6 2. Nf3 g6 3. Bf4 Bg7 4. e3 d6 5. Bd3"
+      ],
+      [
+        "Main Line",
+        "1. d4 Nf6 2. Nf3 g6 3. Bf4 Bg7 4. e3 d6 5. Be2"
+      ],
+      [
+        "Main Line",
+        "1. d4 Nf6 2. Nf3 g6 3. Bf4 Bg7 4. e3 d6 5. Be2 O-O"
+      ],
+      [
+        "Main Line",
+        "1. d4 Nf6 2. Nf3 g6 3. Bf4 Bg7 4. e3 d6 5. h3 c5 6. Be2"
+      ],
+      [
+        "Poisoned Pawn Variation",
+        "1. d4 Nf6 2. Nf3 d5 3. Bf4 c5 4. e3 Qb6 5. Nc3"
+      ]
+    ]
+  },
+  {
+    "color": "w",
+    "opening": "Alien Gambit",
+    "lines": []
+  },
+  {
+    "color": "w",
+    "opening": "Italian Game",
+    "lines": [
+      [
+        "Main Line",
+        "1. e4 e5 2. Nf3 Nc6 3. Bc4"
+      ],
+      [
+        "Anti-Fried Liver Defense",
+        "1. e4 e5 2. Nf3 Nc6 3. Bc4 h6"
+      ],
+      [
+        "Blackburne-Kostić Gambit",
+        "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nd4"
+      ],
+      [
+        "Classical Variation, Albin Gambit",
+        "1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. O-O Nf6 5. c3"
+      ],
+      [
+        "Deutz Gambit",
+        "1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. O-O Nf6 5. d4"
+      ],
+      [
+        "Giuoco Pianissimo",
+        "1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. d3"
+      ],
+      [
+        "Giuoco Pianissimo",
+        "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. O-O Bc5 5. Nc3 d6 6. d3"
+      ],
+      [
+        "Giuoco Pianissimo",
+        "1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. Nc3 Nf6 5. O-O O-O"
+      ],
+      [
+        "Giuoco Pianissimo",
+        "1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. Nc3 Nf6 5. O-O O-O 6. d3"
+      ],
+      [
+        "Giuoco Pianissimo, Canal Variation",
+        "1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. d3 Nf6 5. Nc3 d6 6. Bg5"
+      ]
+    ]
+  },
+  {
+    "color": "w",
+    "opening": "Queen's Gambit",
+    "lines": [
+      [
+        "Baltic Defense, Pseudo-Slav",
+        "1. d4 d5 2. Nf3 Bf5 3. c4 e6 4. Nc3 c6"
+      ],
+      [
+        "Main Line",
+        "1. d4 d5 2. c4"
+      ],
+      [
+        "Austrian Attack, Salvio Countergambit",
+        "1. d4 d5 2. c4 c5 3. dxc5 d4"
+      ],
+      [
+        "Austrian Defense",
+        "1. d4 d5 2. c4 c5"
+      ],
+      [
+        "Austrian Defense, Gusev Countergambit",
+        "1. d4 d5 2. c4 c5 3. cxd5 Nf6"
+      ],
+      [
+        "Austrian Defense, Haberditz Variation",
+        "1. d4 d5 2. c4 c5 3. cxd5 Nf6 4. e4 Nxe4 5. dxc5 Qa5+"
+      ],
+      [
+        "Baltic Defense",
+        "1. d4 d5 2. c4 Bf5"
+      ],
+      [
+        "Baltic Defense, Argentinian Gambit",
+        "1. d4 d5 2. c4 Bf5 3. cxd5 Bxb1 4. Qa4+ c6 5. dxc6 Nxc6"
+      ],
+      [
+        "Baltic Defense, Pseudo-Chigorin",
+        "1. d4 d5 2. c4 Bf5 3. Nc3 e6 4. Nf3 Nc6"
+      ],
+      [
+        "Baltic Defense, Queen Attack",
+        "1. d4 d5 2. c4 Bf5 3. Qb3"
+      ]
+    ]
+  },
+  {
+    "color": "b",
+    "opening": "Caro-Kann Defense",
+    "lines": [
+      [
+        "Main Line",
+        "1. e4 c6"
+      ],
+      [
+        "Main Line",
+        "1. e4 c6 2. Nc3"
+      ],
+      [
+        "Main Line",
+        "1. e4 c6 2. Nc3 d5"
+      ],
+      [
+        "Accelerated Panov Attack",
+        "1. e4 c6 2. c4"
+      ],
+      [
+        "Accelerated Panov Attack",
+        "1. e4 c6 2. c4 d5"
+      ],
+      [
+        "Accelerated Panov Attack, Modern Variation",
+        "1. e4 c6 2. c4 d5 3. exd5 cxd5 4. cxd5 Nf6"
+      ],
+      [
+        "Accelerated Panov Attack, Open Variation",
+        "1. e4 c6 2. c4 e5"
+      ],
+      [
+        "Accelerated Panov Attack, Pseudo-Scandinavian",
+        "1. e4 c6 2. c4 d5 3. exd5 Qxd5"
+      ],
+      [
+        "Accelerated Panov Attack, Van Weersel Attack",
+        "1. e4 c6 2. c4 d5 3. cxd5 cxd5 4. Qb3"
+      ],
+      [
+        "Apocalypse Attack",
+        "1. e4 c6 2. Nf3 d5 3. exd5 cxd5 4. Ne5"
+      ]
+    ]
+  },
+  {
+    "color": "b",
+    "opening": "Sicilian Defense",
+    "lines": [
+      [
+        "Main Line",
+        "1. e4 c5"
+      ],
+      [
+        "Amazon Attack",
+        "1. e4 c5 2. Qg4"
+      ],
+      [
+        "Big Clamp Formation",
+        "1. e4 c5 2. d3 Nc6 3. c3 d6 4. f4"
+      ],
+      [
+        "Bowdler Attack",
+        "1. e4 c5 2. Bc4"
+      ],
+      [
+        "Brick Variation",
+        "1. e4 c5 2. Nh3"
+      ],
+      [
+        "Czerniak Attack",
+        "1. e4 c5 2. b3"
+      ],
+      [
+        "Czerniak Attack, Queen Fianchetto Variation",
+        "1. e4 c5 2. b3 b6"
+      ],
+      [
+        "Euwe Attack, Prins Gambit",
+        "1. e4 c5 2. b3 d5 3. Bb2"
+      ],
+      [
+        "Gloria Variation",
+        "1. e4 c5 2. c4 d6 3. Nc3 Nc6 4. g3 h5"
+      ],
+      [
+        "Grob Variation",
+        "1. e4 c5 2. g4"
+      ]
+    ]
+  },
+  {
+    "color": "b",
+    "opening": "French Defense",
+    "lines": [
+      [
+        "Main Line",
+        "1. e4 e6"
+      ],
+      [
+        "Main Line",
+        "1. e4 e6 2. d4 d5"
+      ],
+      [
+        "Alapin Gambit",
+        "1. e4 e6 2. d4 d5 3. Be3"
+      ],
+      [
+        "Baeuerle Gambit",
+        "1. e4 e6 2. d4 b5"
+      ],
+      [
+        "Banzai-Leong Gambit",
+        "1. e4 e6 2. b4"
+      ],
+      [
+        "Banzai-Leong Gambit, Pinova Gambit",
+        "1. e4 e6 2. b4 Bxb4 3. e5"
+      ],
+      [
+        "Bird Invitation",
+        "1. e4 e6 2. Bb5"
+      ],
+      [
+        "Carlson Gambit",
+        "1. e4 e6 2. d4 d5 3. Nf3 dxe4 4. Ne5"
+      ],
+      [
+        "Chigorin Variation",
+        "1. e4 e6 2. Qe2"
+      ],
+      [
+        "Diemer-Duhm Gambit",
+        "1. e4 e6 2. d4 d5 3. c4"
+      ]
+    ]
+  },
+  {
+    "color": "b",
+    "opening": "King's Indian Defense",
+    "lines": [
+      [
+        "Fianchetto Variation",
+        "1. d4 Nf6 2. c4 g6 3. Nf3 Bg7 4. g3"
+      ],
+      [
+        "Fianchetto Variation, Immediate Fianchetto",
+        "1. d4 Nf6 2. c4 g6 3. g3"
+      ],
+      [
+        "Normal Variation, King's Knight Variation",
+        "1. d4 Nf6 2. Nf3 g6 3. c4"
+      ],
+      [
+        "Santasiere Variation",
+        "1. d4 Nf6 2. c4 g6 3. Nf3 Bg7 4. b4"
+      ],
+      [
+        "Semi-Classical Variation, Benoni Variation",
+        "1. d4 Nf6 2. c4 g6 3. Nc3 Bg7 4. Nf3 O-O 5. e3 d6 6. Be2 c6"
+      ],
+      [
+        "Semi-Classical Variation, Hollywood Variation",
+        "1. d4 Nf6 2. Nf3 g6 3. c4 Bg7 4. Nc3 O-O 5. e3 d6 6. Be2 Nc6"
+      ],
+      [
+        "Main Line",
+        "1. d4 Nf6 2. c4 g6 3. Nc3"
+      ],
+      [
+        "Fianchetto Variation, Benjamin Defense",
+        "1. d4 Nf6 2. c4 g6 3. Nc3 Bg7 4. Nf3 d6 5. g3 O-O 6. Bg2 c6 7. O-O Qb6"
+      ],
+      [
+        "Semi-Classical Variation",
+        "1. d4 Nf6 2. c4 g6 3. Nc3 Bg7 4. Nf3 O-O 5. e3 d6 6. Be2"
+      ],
+      [
+        "Semi-Classical Variation, Exchange Variation",
+        "1. d4 Nf6 2. c4 g6 3. Nc3 Bg7 4. Nf3 O-O 5. e3 d6 6. Be2 Nbd7 7. O-O e5 8. dxe5 dxe5"
+      ]
+    ]
+  },
+  {
+    "color": "b",
+    "opening": "Nimzo-Indian Defense",
+    "lines": [
+      [
+        "Main Line",
+        "1. d4 Nf6 2. c4 e6 3. Nc3 Bb4"
+      ],
+      [
+        "Dilworth Gambit",
+        "1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. e4"
+      ],
+      [
+        "Kmoch Variation",
+        "1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. f3"
+      ],
+      [
+        "Mikenas Attack",
+        "1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. Qd3"
+      ],
+      [
+        "Romanishin Variation",
+        "1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. g3"
+      ],
+      [
+        "Romanishin Variation",
+        "1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. Nf3 c5 5. g3 O-O 6. Bg2"
+      ],
+      [
+        "Romanishin Variation, English Hybrid",
+        "1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. Nf3 c5 5. g3 cxd4 6. Nxd4 O-O 7. Bg2 d5 8. cxd5 Nxd5"
+      ],
+      [
+        "Three Knights Variation",
+        "1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. Nf3"
+      ],
+      [
+        "Three Knights Variation, Euwe Variation",
+        "1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. Nf3 c5 5. d5 Ne4"
+      ],
+      [
+        "Three Knights Variation, Korchnoi Variation",
+        "1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. Nf3 c5 5. d5"
+      ]
+    ]
+  }
+]

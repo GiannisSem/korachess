@@ -1,8 +1,13 @@
+import './App.css';
+
 import { useState } from 'react';
 import { ChessBoard, type MovePayload } from './components/ChessBoard';
 import type { PieceSymbol, Square } from 'chess.js';
 import themes from './assets/themes.json';
 import { useStockfish } from './hooks/useStockfish';
+
+import courses from './assets/openings.json';
+import CourseCard, {type Course} from "./components/CourseCard.tsx";
 
 function App() {
     const stockfish = useStockfish();
@@ -39,6 +44,11 @@ function App() {
             <p>
                 Stockfish: {engineMove ? `${engineMove.from}-${engineMove.to}` : 'in attesa della mossa'}
             </p>
+
+            {courses.map((course: Course) => (
+                <CourseCard course={course} />
+                ))
+            }
         </>
     );
 }
