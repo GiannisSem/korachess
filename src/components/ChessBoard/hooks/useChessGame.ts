@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { Chess, type Square, Move } from 'chess.js';
-import type {ChessBoardProps, MovePayload, PendingPromotion} from '../types';
+import type {ChessBoardProps, PendingPromotion} from '../types';
 
 export function useChessGame({
                                  initialFen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
@@ -62,14 +62,7 @@ export function useChessGame({
                 checkGameEnd();
 
                 if (onMove) {
-                    const payload: MovePayload = {
-                        from: res.from,
-                        to: res.to,
-                        promotion: res.promotion,
-                        san: res.san,
-                        lan: res.lan,
-                    };
-                    onMove(payload);
+                    onMove(chessRef.current.fen());
                 }
             }
         } catch (e) {

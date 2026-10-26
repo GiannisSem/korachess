@@ -1,0 +1,48 @@
+export class StockfishEngine {
+    private worker: Worker | null = null;
+    private onMoveCallback?: (bestMove: string) => void;
+
+    constructor(workerPath: string = '/stockfish/stockfish-19-lite-single.js') {
+        this.worker = new Worker(workerPath);
+        this.init();
+    }
+
+    private init(): void {
+        if (!this.worker) return;
+
+        this.worker.onmessage = (event: MessageEvent<string>) => {
+            const line = event.data;
+            if (line.startsWith('bestmove') && this.onMoveCallback) {
+                const move = line.split(' ')[1];
+                const onMove = this.onMoveCallback;
+                this.onMoveCallback = undefined;
+                if (move && move !== '(none)' && move !== '0000') {
+                    onMove(move);
+                }
+            }
+        };
+
+        this.sendCommand('uci');
+        this.sendCommand('isready');
+    }
+
+    public startNewGame(): void {
+        this.sendCommand('ucinewgame');
+        this.sendCommand('position startpos');
+    }
+
+    public sendCommand(cmd: string): void {
+        this.worker?.postMessage(cmd);
+    }
+
+    public calculateBestMove(fen: string, depth = 15, onMove: (move: string) => void): void {
+        this.onMoveCallback = onMove;
+        this.sendCommand(`position fen ${fen}`);
+        this.sendCommand(`go depth ${depth}`);
+    }
+
+    public terminate(): void {
+        this.worker?.terminate();
+        this.worker = null;
+    }
+}
