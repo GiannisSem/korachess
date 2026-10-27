@@ -11,6 +11,29 @@ import CourseCard, {type Course} from "./components/CourseCard.tsx";
 import StockfishIsReady from "./components/StockfishIsReady.tsx";
 import VModeSelector from "./components/VModeSelector.tsx";
 
+const MODE_CONTENT: Record<string, { eyebrow: string; title: string; description: string }> = {
+    ranked: {
+        eyebrow: "Game",
+        title: "Play against Stockfish",
+        description: "You play as White.",
+    },
+    free: {
+        eyebrow: "Analysis",
+        title: "Free board",
+        description: "Move the pieces to explore a position.",
+    },
+    openings: {
+        eyebrow: "Repertoire",
+        title: "Openings",
+        description: "Browse the available openings and lines.",
+    },
+    settings: {
+        eyebrow: "KoraChess",
+        title: "Settings",
+        description: "Application preferences.",
+    },
+};
+
 function App() {
     const stockfish = useStockfish();
     const [engineMove, setEngineMove] = useState<MovePayload>();
@@ -19,7 +42,7 @@ function App() {
         stockfish?.calculateBestMove(fen, 15, (uciMove) => {
             const match = /^([a-h][1-8])([a-h][1-8])([qrbn])?$/.exec(uciMove);
             if (!match) {
-                console.error('Mossa UCI non valida ricevuta da Stockfish:', uciMove);
+                console.error('Invalid UCI move received from Stockfish:', uciMove);
                 return;
             }
 
@@ -31,31 +54,84 @@ function App() {
         });
     };
 
+    const [mode, setMode] = useState("ranked");
+    const handleMode = (value: string) => {
+        setMode(value);
+    }
+
+    const modeContent = MODE_CONTENT[mode] ?? {
+        eyebrow: "KoraChess",
+        title: "Choose a mode",
+        description: "Choose a mode to get started.",
+    };
+
     return (
-        <>
-            <StockfishIsReady />
-            <div className="base-container">
-                <VModeSelector />
-                <ChessBoard
-                    onEndGame={(reason) => console.log('Partita terminata:', reason)}
-                    theme={themes[2]}
+        <div className="app-shell">
+            <header className="app-header">
+                <div className="brand">
+                    <span className="brand-mark" aria-hidden="true">♞</span>
+                    <h1>KoraChess</h1>
+                </div>
+                <StockfishIsReady />
+            </header>
 
-                    reversed={false}
-                    playerColor="w"
+            <div className="app-layout">
+                <aside className="sidebar">
+                    <VModeSelector onChange={handleMode} />
+                </aside>
 
-                    onMove={handlePlayerMove}
-                    engineMove={engineMove}
-                />
+                <main className="main-content">
+                    <div className="workspace-heading">
+                        <div>
+                            <p className="eyebrow">{modeContent.eyebrow}</p>
+                            <h2>{modeContent.title}</h2>
+                            <p className="workspace-description">{modeContent.description}</p>
+                        </div>
+                        {mode === "openings" && (
+                            <span className="workspace-count">
+                                {courses.length} {courses.length === 1 ? "opening" : "openings"}
+                            </span>
+                        )}
+                    </div>
+
+                    <section className="workspace-panel" aria-label={modeContent.title}>
+                        {mode === "ranked" && (
+                            <div className="board-stage">
+                                <ChessBoard
+                                    onEndGame={(reason) => console.log('Game ended:', reason)}
+                                    theme={themes[2]}
+                                    reversed={false}
+                                    playerColor="w"
+                                    onMove={handlePlayerMove}
+                                    engineMove={engineMove}
+                                />
+                            </div>
+                        )}
+
+                        {mode === "free" && (
+                            <div className="board-stage">
+                                <ChessBoard />
+                            </div>
+                        )}
+
+                        {mode === "openings" && (
+                            <div className="openings-grid">
+                                {courses.map((course: Course) => (
+                                    <CourseCard key={course.opening} course={course} onClick={() => console.log("wow")}/>
+                                ))}
+                            </div>
+                        )}
+
+                        {mode === "settings" && (
+                            <div className="settings-placeholder">
+                                <strong>Settings unavailable</strong>
+                                <span>This section will be available soon.</span>
+                            </div>
+                        )}
+                    </section>
+                </main>
             </div>
-            <p>
-                Stockfish: {engineMove ? `${engineMove.from}-${engineMove.to}` : 'in attesa della mossa'}
-            </p>
-
-            {courses.map((course: Course) => (
-                <CourseCard course={course} />
-                ))
-            }
-        </>
+        </div>
     );
 }
 

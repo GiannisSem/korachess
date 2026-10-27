@@ -5,15 +5,21 @@ export interface Course {
 }
 
 interface CourseCardProps {
-    course: Course
+    course: Course,
+    onClick: () => void,
 }
 
-function CourseCard({ course }: CourseCardProps) {
+function CourseCard({ course, onClick }: CourseCardProps) {
 
     return (
-        <div className="course-card">
-            <h1>{course.opening}</h1>
-            <p>Nel corso sono presenti {course.lines.length} linee</p>
+        <div className="course-card" onClick={onClick}>
+            <p className="course-eyebrow">Opening repertoire</p>
+            <h3>{course.opening}</h3>
+            <p className="course-summary">
+                {course.lines.length === 0
+                    ? "No lines saved"
+                    : `${course.lines.length} ${course.lines.length === 1 ? "line" : "lines"} available`}
+            </p>
         </div>
     )
 }

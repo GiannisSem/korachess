@@ -1,37 +1,250 @@
-.base-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 32px;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 24px;
-    box-sizing: border-box;
+.app-shell {
+  width: min(100% - 40px, 1280px);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 24px 0 40px;
 }
 
-.base-container > * {
-    flex: 0 0 auto;
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  min-height: 56px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #e4e6df;
 }
 
-.course-card {
-    border: 1px solid hsl(0, 0%, 80%);
-    border-radius: 10px;
-    box-shadow: 5px 5px 5px hsla(0, 0%, 0%, 0.1);
-    padding: 20px;
-    margin: 10px;
-    text-align: center;
-    max-width: 500px;
-    display: inline-block;
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-mark {
+  color: #426b4c;
+  font-size: 30px;
+  line-height: 1;
+}
+
+.brand h1 {
+  margin: 0;
+  color: #25352a;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+}
+
+.stockfish-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 8px 12px;
+  border: 3px solid #e4e6df;
+  border-radius: 12px;
 }
 
 .stockfish-isready {
-    border: 1px solid hsl(0, 0%, 80%);
-    border-radius: 10px;
-    box-shadow: 5px 5px 5px hsla(0, 0%, 0%, 0.1);
-    padding: 20px;
-    margin: 10px;
-    text-align: center;
-    max-width: 500px;
-    display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #536057;
+  font-size: 12px;
+}
+
+.engine-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.is-ready .engine-indicator {
+  background: #4c8959;
+}
+
+.is-loading .engine-indicator {
+  background: #bf8b40;
+}
+
+.app-layout {
+  display: grid;
+  grid-template-columns: 196px minmax(0, 1fr);
+  align-items: start;
+  gap: 40px;
+  padding-top: 30px;
+}
+
+.sidebar,
+.main-content {
+  min-width: 0;
+}
+
+.workspace-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 18px;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  color: #65756a;
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.workspace-heading h2 {
+  margin: 0;
+  color: #25352a;
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.2;
+}
+
+.workspace-description {
+  margin: 7px 0 0;
+  color: #657168;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.workspace-count {
+  flex: 0 0 auto;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #e8eee6;
+  color: #48604d;
+  font-size: 12px;
+}
+
+.workspace-panel {
+  min-width: 0;
+  padding: clamp(14px, 2.5vw, 24px);
+  border: 1px solid #e3e6df;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 5px 18px rgba(32, 46, 35, 0.045);
+}
+
+.board-stage {
+  width: min(100%, 640px);
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 4px;
+  background: #ecdab9;
+}
+
+.openings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: 12px;
+}
+
+.course-card {
+  min-width: 0;
+  cursor: pointer;
+  padding: 16px;
+  border: 1px solid #e4e8e1;
+  border-radius: 10px;
+  background: #fbfcfa;
+  transition: border-color 150ms ease, background-color 150ms ease;
+}
+
+.course-card:hover {
+  border-color: #9db59f;
+  background: #f7faf6;
+}
+
+.course-eyebrow {
+  margin: 0 0 8px;
+  color: #718074;
+  font-size: 11px;
+}
+
+.course-card h3 {
+  margin: 0 0 12px;
+  color: #293a2e;
+  font-size: 17px;
+  font-weight: 650;
+}
+
+.course-summary {
+  margin: 0;
+  color: #69756b;
+  font-size: 12px;
+}
+
+.settings-placeholder {
+  padding: 30px 18px;
+  color: #657168;
+  text-align: center;
+}
+
+.settings-placeholder strong {
+  display: block;
+  margin-bottom: 7px;
+  color: #344438;
+  font-size: 15px;
+}
+
+.settings-placeholder span {
+  font-size: 13px;
+}
+
+@media (max-width: 760px) {
+  .app-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding-top: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-shell {
+    width: min(100% - 24px, 520px);
+    padding-top: 16px;
+  }
+
+  .app-header {
+    min-height: 48px;
+    padding-bottom: 14px;
+  }
+
+  .brand-mark {
+    font-size: 26px;
+  }
+
+  .brand h1 {
+    font-size: 18px;
+  }
+
+  .stockfish-isready {
+    gap: 6px;
+    font-size: 11px;
+  }
+
+  .workspace-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .workspace-heading h2 {
+    font-size: 26px;
+  }
+
+  .workspace-panel {
+    padding: 10px;
+    border-radius: 11px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .course-card {
+    transition: none;
+  }
 }

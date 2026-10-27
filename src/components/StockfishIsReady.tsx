@@ -20,17 +20,12 @@ function StockfishIsReady() {
         };
     }, [stockfish]);
 
-    const handleColor = () => {
-        return isready ? {
-            color: "lime", backgroundColor: "green"
-        } : {
-            color: "orange", backgroundColor: "red"
-        }
-    }
-
     return (
-        <div className="stockfish-isready" style={handleColor()}>
-            <p>* {isready ? "READY" : "NOT READY"}</p>
+        <div className="stockfish-block">
+            <div className={`stockfish-isready ${isready ? "is-ready" : "is-loading"}`} role="status" aria-live="polite">
+                <span className="engine-indicator" aria-hidden="true" />
+                <span>{isready ? "Stockfish ready" : "Starting engine..."}</span>
+            </div>
         </div>
     );
 }

@@ -3,6 +3,13 @@ import "./VModeSelector.css";
 
 const DEFAULT_OPTIONS = ["ranked", "free", "openings", "settings"];
 
+const MODE_LABELS: Record<string, string> = {
+    ranked: "Ranked",
+    free: "Free play",
+    openings: "Openings",
+    settings: "Settings",
+};
+
 interface VModeSelectorProps {
     options?: string[];
     onChange?: (value: string) => void;
@@ -17,9 +24,11 @@ function VModeSelector({options = DEFAULT_OPTIONS, onChange}: VModeSelectorProps
     };
 
     return (
-        <div className="radio-container" role="radiogroup" aria-label="Mode selector">
+        <div className="radio-container" role="radiogroup" aria-label="Game modes">
+            <div className="sidebar-heading">Modes</div>
             {options.map((option) => {
                 const isSelected = selectedValue === option;
+                const label = MODE_LABELS[option] ?? option;
 
                 return (
                     <button
@@ -30,9 +39,7 @@ function VModeSelector({options = DEFAULT_OPTIONS, onChange}: VModeSelectorProps
                         aria-checked={isSelected}
                         onClick={() => handleSelect(option)}
                     >
-                        <span className="mode-card">
-                            <span className="mode-label">{option}</span>
-                        </span>
+                        <span className="mode-label">{label}</span>
                     </button>
                 );
             })}
