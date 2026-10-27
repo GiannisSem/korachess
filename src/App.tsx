@@ -1,15 +1,14 @@
 import './App.css';
 
 import { useState } from 'react';
-import { ChessBoard, type MovePayload } from './components/ChessBoard';
-import type { PieceSymbol, Square } from 'chess.js';
-import themes from './assets/themes.json';
-import { useStockfish } from './hooks/useStockfish';
 
 import courses from './assets/openings.json';
-import CourseCard, {type Course} from "./components/CourseCard.tsx";
 import StockfishIsReady from "./components/StockfishIsReady.tsx";
 import VModeSelector from "./components/VModeSelector.tsx";
+import RankedMode from "./modes/RankedMode.tsx";
+import FreeplayMode from "./modes/FreeplayMode.tsx";
+import OpeningsMode from "./modes/OpeningsMode.tsx";
+import SettingsMode from "./modes/SettingsMode.tsx";
 
 const MODE_CONTENT: Record<string, { eyebrow: string; title: string; description: string }> = {
     ranked: {
@@ -35,24 +34,6 @@ const MODE_CONTENT: Record<string, { eyebrow: string; title: string; description
 };
 
 function App() {
-    const stockfish = useStockfish();
-    const [engineMove, setEngineMove] = useState<MovePayload>();
-
-    const handlePlayerMove = (fen: string) => {
-        stockfish?.calculateBestMove(fen, 15, (uciMove) => {
-            const match = /^([a-h][1-8])([a-h][1-8])([qrbn])?$/.exec(uciMove);
-            if (!match) {
-                console.error('Invalid UCI move received from Stockfish:', uciMove);
-                return;
-            }
-
-            setEngineMove({
-                from: match[1] as Square,
-                to: match[2] as Square,
-                promotion: match[3] as PieceSymbol | undefined,
-            });
-        });
-    };
 
     const [mode, setMode] = useState("ranked");
     const handleMode = (value: string) => {
@@ -96,37 +77,19 @@ function App() {
 
                     <section className="workspace-panel" aria-label={modeContent.title}>
                         {mode === "ranked" && (
-                            <div className="board-stage">
-                                <ChessBoard
-                                    onEndGame={(reason) => console.log('Game ended:', reason)}
-                                    theme={themes[2]}
-                                    reversed={false}
-                                    playerColor="w"
-                                    onMove={handlePlayerMove}
-                                    engineMove={engineMove}
-                                />
-                            </div>
+                            <RankedMode />
                         )}
 
                         {mode === "free" && (
-                            <div className="board-stage">
-                                <ChessBoard />
-                            </div>
+                            <FreeplayMode />
                         )}
 
                         {mode === "openings" && (
-                            <div className="openings-grid">
-                                {courses.map((course: Course) => (
-                                    <CourseCard key={course.opening} course={course} onClick={() => console.log("wow")}/>
-                                ))}
-                            </div>
+                            <OpeningsMode />
                         )}
 
                         {mode === "settings" && (
-                            <div className="settings-placeholder">
-                                <strong>Settings unavailable</strong>
-                                <span>This section will be available soon.</span>
-                            </div>
+                            <SettingsMode />
                         )}
                     </section>
                 </main>
