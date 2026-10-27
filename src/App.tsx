@@ -8,6 +8,8 @@ import { useStockfish } from './hooks/useStockfish';
 
 import courses from './assets/openings.json';
 import CourseCard, {type Course} from "./components/CourseCard.tsx";
+import StockfishIsReady from "./components/StockfishIsReady.tsx";
+import VModeSelector from "./components/VModeSelector.tsx";
 
 function App() {
     const stockfish = useStockfish();
@@ -31,16 +33,20 @@ function App() {
 
     return (
         <>
-            <ChessBoard
-                onEndGame={(reason) => console.log('Partita terminata:', reason)}
-                theme={themes[2]}
+            <StockfishIsReady />
+            <div className="base-container">
+                <VModeSelector />
+                <ChessBoard
+                    onEndGame={(reason) => console.log('Partita terminata:', reason)}
+                    theme={themes[2]}
 
-                reversed={false}
-                playerColor="w"
+                    reversed={false}
+                    playerColor="w"
 
-                onMove={handlePlayerMove}
-                engineMove={engineMove}
-            />
+                    onMove={handlePlayerMove}
+                    engineMove={engineMove}
+                />
+            </div>
             <p>
                 Stockfish: {engineMove ? `${engineMove.from}-${engineMove.to}` : 'in attesa della mossa'}
             </p>
