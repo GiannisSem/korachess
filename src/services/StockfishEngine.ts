@@ -1,6 +1,8 @@
 export class StockfishEngine {
     private worker: Worker | null = null;
     private onMoveCallback?: (bestMove: string) => void;
+    private onReadyCallback?: () => void;
+    private ready = false;
 
     constructor(workerPath: string = '/stockfish/stockfish-19-lite-single.js') {
         this.worker = new Worker(workerPath);
@@ -12,6 +14,13 @@ export class StockfishEngine {
 
         this.worker.onmessage = (event: MessageEvent<string>) => {
             const line = event.data;
+
+            if (line === 'readyok') {
+                this.ready = true;
+                this.onReadyCallback?.();
+                return;
+            }
+
             if (line.startsWith('bestmove') && this.onMoveCallback) {
                 const move = line.split(' ')[1];
                 const onMove = this.onMoveCallback;
@@ -41,8 +50,26 @@ export class StockfishEngine {
         this.sendCommand(`go depth ${depth}`);
     }
 
+    public setOnReady(callback?: () => void): void {
+        this.onReadyCallback = callback;
+
+        if (this.ready && callback) {
+            callback();
+        }
+    }
+
+    public clearOnReady(): void {
+        this.onReadyCallback = undefined;
+    }
+
+    public isReady(): boolean {
+        return this.ready;
+    }
+
     public terminate(): void {
         this.worker?.terminate();
         this.worker = null;
+        this.ready = false;
+        this.onReadyCallback = undefined;
     }
 }
