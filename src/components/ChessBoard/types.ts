@@ -36,6 +36,6 @@ export interface ChessBoardProps {
     reversed?: boolean;
     theme?: BoardTheme;
     onMove?: (fen: string) => void;
-    onEndGame?: (reason: 'checkmate' | 'stalemate' | 'draw') => void;
+    onEndGame?: (reason: 'checkmate' | 'stalemate' | 'draw', pgn: string) => void;
     viewOnly?: boolean;
 }

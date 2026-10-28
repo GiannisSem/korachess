@@ -17,9 +17,9 @@ const MODE_CONTENT: Record<string, { eyebrow: string; title: string; description
         description: "You play as White.",
     },
     free: {
-        eyebrow: "Analysis",
-        title: "Free board",
-        description: "Move the pieces to explore a position.",
+        eyebrow: "Casual game",
+        title: "Freeplay",
+        description: "Play a casual game against Stockfish.",
     },
     openings: {
         eyebrow: "Repertoire",

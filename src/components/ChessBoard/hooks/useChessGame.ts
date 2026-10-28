@@ -21,9 +21,9 @@ export function useChessGame({
     const checkGameEnd = useCallback(() => {
         const game = chessRef.current;
         if (game.isGameOver() && onEndGame) {
-            if (game.isCheckmate()) onEndGame('checkmate');
-            else if (game.isStalemate()) onEndGame('stalemate');
-            else if (game.isDraw()) onEndGame('draw');
+            if (game.isCheckmate()) onEndGame('checkmate', chessRef.current.pgn());
+            else if (game.isStalemate()) onEndGame('stalemate', chessRef.current.pgn());
+            else if (game.isDraw()) onEndGame('draw', chessRef.current.pgn());
             setViewOnly(true);
         }
     }, [onEndGame]);

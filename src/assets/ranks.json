@@ -1,0 +1,145 @@
+[
+  {
+    "id": "bronze_1",
+    "league": "Bronze",
+    "sub_rank": 1,
+    "name": "Bronze I",
+    "skill_level": 0,
+    "depth": 2,
+    "rankUpScore": 2.5,
+    "rankDownScore": -1.0,
+    "icon": "icon-bronze"
+  },
+  {
+    "id": "bronze_2",
+    "league": "Bronze",
+    "sub_rank": 2,
+    "name": "Bronze II",
+    "skill_level": 1,
+    "depth": 3,
+    "rankUpScore": 2.5,
+    "rankDownScore": 1,
+    "icon": "icon-bronze"
+  },
+  {
+    "id": "bronze_3",
+    "league": "Bronze",
+    "sub_rank": 3,
+    "name": "Bronze III",
+    "skill_level": 3,
+    "depth": 4,
+    "rankUpScore": 4.0,
+    "rankDownScore": 2.5,
+    "icon": "icon-bronze"
+  },
+  {
+    "id": "silver_1",
+    "league": "Silver",
+    "sub_rank": 1,
+    "name": "Silver I",
+    "skill_level": 5,
+    "depth": 5,
+    "rankUpScore": 4.0,
+    "rankDownScore": 2.5,
+    "icon": "icon-silver"
+  },
+  {
+    "id": "silver_2",
+    "league": "Silver",
+    "sub_rank": 2,
+    "name": "Silver II",
+    "skill_level": 7,
+    "depth": 6,
+    "rankUpScore": 4.0,
+    "rankDownScore": 2.5,
+    "icon": "icon-silver"
+  },
+  {
+    "id": "silver_3",
+    "league": "Silver",
+    "sub_rank": 3,
+    "name": "Silver III",
+    "skill_level": 9,
+    "depth": 7,
+    "rankUpScore": 4.0,
+    "rankDownScore": 2.5,
+    "icon": "icon-silver"
+  },
+  {
+    "id": "gold_1",
+    "league": "Gold",
+    "sub_rank": 1,
+    "name": "Gold I",
+    "skill_level": 11,
+    "depth": 8,
+    "rankUpScore": 4.0,
+    "rankDownScore": 2.5,
+    "icon": "icon-gold"
+  },
+  {
+    "id": "gold_2",
+    "league": "Gold",
+    "sub_rank": 2,
+    "name": "Gold II",
+    "skill_level": 13,
+    "depth": 9,
+    "rankUpScore": 4.0,
+    "rankDownScore": 2.5,
+    "icon": "icon-gold"
+  },
+  {
+    "id": "gold_3",
+    "league": "Gold",
+    "sub_rank": 3,
+    "name": "Gold III",
+    "skill_level": 15,
+    "depth": 10,
+    "rankUpScore": 4.0,
+    "rankDownScore": 2.5,
+    "icon": "icon-gold"
+  },
+  {
+    "id": "diamond_1",
+    "league": "Diamond",
+    "sub_rank": 1,
+    "name": "Diamond I",
+    "skill_level": 17,
+    "depth": 12,
+    "rankUpScore": 4.5,
+    "rankDownScore": 2.5,
+    "icon": "icon-diamond"
+  },
+  {
+    "id": "diamond_2",
+    "league": "Diamond",
+    "sub_rank": 2,
+    "name": "Diamond II",
+    "skill_level": 18,
+    "depth": 13,
+    "rankUpScore": 4.5,
+    "rankDownScore": 2.5,
+    "icon": "icon-diamond"
+  },
+  {
+    "id": "diamond_3",
+    "league": "Diamond",
+    "sub_rank": 3,
+    "name": "Diamond III",
+    "skill_level": 19,
+    "depth": 14,
+    "rankUpScore": 4.5,
+    "rankDownScore": 3.0,
+    "icon": "icon-diamond"
+  },
+  {
+    "id": "master_1",
+    "league": "Master",
+    "sub_rank": 1,
+    "name": "Master",
+    "skill_level": 20,
+    "depth": 16,
+    "rankUpScore": 5.0,
+    "rankDownScore": 3.0,
+    "icon": "icon-master"
+  }
+]

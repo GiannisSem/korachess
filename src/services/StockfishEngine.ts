@@ -9,6 +9,10 @@ export class StockfishEngine {
         this.init();
     }
 
+    private sendCommand(cmd: string): void {
+        this.worker?.postMessage(cmd);
+    }
+
     private init(): void {
         if (!this.worker) return;
 
@@ -40,8 +44,8 @@ export class StockfishEngine {
         this.sendCommand('position startpos');
     }
 
-    public sendCommand(cmd: string): void {
-        this.worker?.postMessage(cmd);
+    public setSkillLevel(skillLevel: number): void {
+        this.sendCommand(`setoption name Skill Level value ${skillLevel}`);
     }
 
     public calculateBestMove(fen: string, depth = 15, onMove: (move: string) => void): void {
