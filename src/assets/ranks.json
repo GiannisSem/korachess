@@ -4,10 +4,10 @@
     "league": "Bronze",
     "sub_rank": 1,
     "name": "Bronze I",
-    "skill_level": 0,
+    "elo": 400,
     "depth": 2,
-    "rankUpScore": 2.5,
-    "rankDownScore": -1.0,
+    "rankUpScore": 2.0,
+    "rankDownScore": null,
     "icon": "icon-bronze"
   },
   {
@@ -15,10 +15,10 @@
     "league": "Bronze",
     "sub_rank": 2,
     "name": "Bronze II",
-    "skill_level": 1,
+    "elo": 600,
     "depth": 3,
-    "rankUpScore": 2.5,
-    "rankDownScore": 1,
+    "rankUpScore": 2.0,
+    "rankDownScore": 0.5,
     "icon": "icon-bronze"
   },
   {
@@ -26,10 +26,10 @@
     "league": "Bronze",
     "sub_rank": 3,
     "name": "Bronze III",
-    "skill_level": 3,
+    "elo": 800,
     "depth": 4,
-    "rankUpScore": 4.0,
-    "rankDownScore": 2.5,
+    "rankUpScore": 2.5,
+    "rankDownScore": 1.0,
     "icon": "icon-bronze"
   },
   {
@@ -37,10 +37,10 @@
     "league": "Silver",
     "sub_rank": 1,
     "name": "Silver I",
-    "skill_level": 5,
+    "elo": 1000,
     "depth": 5,
-    "rankUpScore": 4.0,
-    "rankDownScore": 2.5,
+    "rankUpScore": 3.0,
+    "rankDownScore": 1.5,
     "icon": "icon-silver"
   },
   {
@@ -48,10 +48,10 @@
     "league": "Silver",
     "sub_rank": 2,
     "name": "Silver II",
-    "skill_level": 7,
+    "elo": 1200,
     "depth": 6,
-    "rankUpScore": 4.0,
-    "rankDownScore": 2.5,
+    "rankUpScore": 3.0,
+    "rankDownScore": 1.5,
     "icon": "icon-silver"
   },
   {
@@ -59,10 +59,10 @@
     "league": "Silver",
     "sub_rank": 3,
     "name": "Silver III",
-    "skill_level": 9,
+    "elo": 1350,
     "depth": 7,
-    "rankUpScore": 4.0,
-    "rankDownScore": 2.5,
+    "rankUpScore": 3.5,
+    "rankDownScore": 1.5,
     "icon": "icon-silver"
   },
   {
@@ -70,10 +70,10 @@
     "league": "Gold",
     "sub_rank": 1,
     "name": "Gold I",
-    "skill_level": 11,
+    "elo": 1500,
     "depth": 8,
-    "rankUpScore": 4.0,
-    "rankDownScore": 2.5,
+    "rankUpScore": 3.5,
+    "rankDownScore": 1.5,
     "icon": "icon-gold"
   },
   {
@@ -81,10 +81,10 @@
     "league": "Gold",
     "sub_rank": 2,
     "name": "Gold II",
-    "skill_level": 13,
+    "elo": 1700,
     "depth": 9,
-    "rankUpScore": 4.0,
-    "rankDownScore": 2.5,
+    "rankUpScore": 3.5,
+    "rankDownScore": 1.5,
     "icon": "icon-gold"
   },
   {
@@ -92,10 +92,10 @@
     "league": "Gold",
     "sub_rank": 3,
     "name": "Gold III",
-    "skill_level": 15,
+    "elo": 1900,
     "depth": 10,
     "rankUpScore": 4.0,
-    "rankDownScore": 2.5,
+    "rankDownScore": 1.5,
     "icon": "icon-gold"
   },
   {
@@ -103,10 +103,10 @@
     "league": "Diamond",
     "sub_rank": 1,
     "name": "Diamond I",
-    "skill_level": 17,
+    "elo": 2100,
     "depth": 12,
-    "rankUpScore": 4.5,
-    "rankDownScore": 2.5,
+    "rankUpScore": 4.0,
+    "rankDownScore": 1.5,
     "icon": "icon-diamond"
   },
   {
@@ -114,10 +114,10 @@
     "league": "Diamond",
     "sub_rank": 2,
     "name": "Diamond II",
-    "skill_level": 18,
+    "elo": 2300,
     "depth": 13,
-    "rankUpScore": 4.5,
-    "rankDownScore": 2.5,
+    "rankUpScore": 4.0,
+    "rankDownScore": 2.0,
     "icon": "icon-diamond"
   },
   {
@@ -125,10 +125,10 @@
     "league": "Diamond",
     "sub_rank": 3,
     "name": "Diamond III",
-    "skill_level": 19,
+    "elo": 2500,
     "depth": 14,
     "rankUpScore": 4.5,
-    "rankDownScore": 3.0,
+    "rankDownScore": 2.0,
     "icon": "icon-diamond"
   },
   {
@@ -136,10 +136,10 @@
     "league": "Master",
     "sub_rank": 1,
     "name": "Master",
-    "skill_level": 20,
+    "elo": 2850,
     "depth": 16,
-    "rankUpScore": 5.0,
-    "rankDownScore": 3.0,
+    "rankUpScore": null,
+    "rankDownScore": 2.0,
     "icon": "icon-master"
   }
 ]

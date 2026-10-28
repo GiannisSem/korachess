@@ -44,8 +44,9 @@ export class StockfishEngine {
         this.sendCommand('position startpos');
     }
 
-    public setSkillLevel(skillLevel: number): void {
-        this.sendCommand(`setoption name Skill Level value ${skillLevel}`);
+    public setElo(elo: number): void {
+        this.sendCommand("setoption name UCI_LimitStrength value true")
+        this.sendCommand(`setoption name UCI_Elo value ${elo}`)
     }
 
     public calculateBestMove(fen: string, depth = 15, onMove: (move: string) => void): void {

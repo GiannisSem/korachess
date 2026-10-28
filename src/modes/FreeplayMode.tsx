@@ -17,6 +17,8 @@ function FreeplayMode() {
     const [difficulty, setDifficulty] = useState<Rank | null>(null);
     const [started, setStarted] = useState(false);
 
+    const [gameEnded, setGameEnded] = useState("");
+
     const handleColor = (color: Color | undefined) => {
         setColor(color);
     }
@@ -32,7 +34,7 @@ function FreeplayMode() {
 
         // aggiorna stockfish
         stockfish.startNewGame();
-        stockfish.setSkillLevel(difficulty.skill_level);
+        stockfish.setElo(difficulty.elo)
 
         // imposta colore
         console.log(color);
@@ -50,7 +52,7 @@ function FreeplayMode() {
     };
 
     const handleEndGame = async (reason: "checkmate" | "stalemate" | "draw", pgn: string) => {
-        console.log(reason);
+        setGameEnded(reason);
         await navigator.clipboard.writeText(pgn);
     }
 
@@ -79,6 +81,13 @@ function FreeplayMode() {
                             engineMove={engineMove}
                         />
                     </div>
+                )
+            }
+
+            {
+                gameEnded !== "" && (
+                    <p>Partita finita per {gameEnded}</p>
+                // nuova partita o altro
                 )
             }
 

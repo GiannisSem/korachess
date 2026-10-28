@@ -6,7 +6,7 @@ export interface Rank {
     league: LeagueTier;
     sub_rank: SubRank;
     name: string;
-    skill_level: number;
+    elo: number;
     depth: number;
     rankUpScore: number;
     rankDownScore: number;

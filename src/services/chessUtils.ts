@@ -36,6 +36,12 @@ interface CalculateMoveParams {
     onError?: (invalidUci: string) => void;
 }
 
+async function randomDelay(minSec: number = 1, maxSec: number = 3): Promise<number> {
+    const ms = (Math.random() * (maxSec - minSec) + minSec) * 1000;
+    await new Promise((resolve) => setTimeout(resolve, ms));
+    return ms / 1000; // Restituisce i secondi effettivi attesi
+}
+
 /**
  * Richiede la mossa migliore al motore e restituisce il MovePayload parsato.
  */
@@ -48,7 +54,7 @@ export function requestEngineMove({
                                   }: CalculateMoveParams): void {
     if (!engine) return;
 
-    engine.calculateBestMove(fen, depth, (uciMove: string) => {
+    engine.calculateBestMove(fen, depth, async (uciMove: string) => {
         const parsedMove = parseUciMove(uciMove);
         if (!parsedMove) {
             if (onError) {
@@ -58,6 +64,8 @@ export function requestEngineMove({
             }
             return;
         }
+
+        await randomDelay();
 
         onMove(parsedMove);
     });
