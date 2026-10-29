@@ -1,6 +1,6 @@
 [
   {
-    "id": "bronze_1",
+    "id": 0,
     "league": "Bronze",
     "sub_rank": 1,
     "name": "Bronze I",
@@ -11,7 +11,7 @@
     "icon": "icon-bronze"
   },
   {
-    "id": "bronze_2",
+    "id": 1,
     "league": "Bronze",
     "sub_rank": 2,
     "name": "Bronze II",
@@ -22,7 +22,7 @@
     "icon": "icon-bronze"
   },
   {
-    "id": "bronze_3",
+    "id": 2,
     "league": "Bronze",
     "sub_rank": 3,
     "name": "Bronze III",
@@ -33,7 +33,7 @@
     "icon": "icon-bronze"
   },
   {
-    "id": "silver_1",
+    "id": 3,
     "league": "Silver",
     "sub_rank": 1,
     "name": "Silver I",
@@ -44,7 +44,7 @@
     "icon": "icon-silver"
   },
   {
-    "id": "silver_2",
+    "id": 4,
     "league": "Silver",
     "sub_rank": 2,
     "name": "Silver II",
@@ -55,7 +55,7 @@
     "icon": "icon-silver"
   },
   {
-    "id": "silver_3",
+    "id": 5,
     "league": "Silver",
     "sub_rank": 3,
     "name": "Silver III",
@@ -66,7 +66,7 @@
     "icon": "icon-silver"
   },
   {
-    "id": "gold_1",
+    "id": 6,
     "league": "Gold",
     "sub_rank": 1,
     "name": "Gold I",
@@ -77,7 +77,7 @@
     "icon": "icon-gold"
   },
   {
-    "id": "gold_2",
+    "id": 7,
     "league": "Gold",
     "sub_rank": 2,
     "name": "Gold II",
@@ -88,7 +88,7 @@
     "icon": "icon-gold"
   },
   {
-    "id": "gold_3",
+    "id": 8,
     "league": "Gold",
     "sub_rank": 3,
     "name": "Gold III",
@@ -99,7 +99,7 @@
     "icon": "icon-gold"
   },
   {
-    "id": "diamond_1",
+    "id": 9,
     "league": "Diamond",
     "sub_rank": 1,
     "name": "Diamond I",
@@ -110,7 +110,7 @@
     "icon": "icon-diamond"
   },
   {
-    "id": "diamond_2",
+    "id": 10,
     "league": "Diamond",
     "sub_rank": 2,
     "name": "Diamond II",
@@ -121,7 +121,7 @@
     "icon": "icon-diamond"
   },
   {
-    "id": "diamond_3",
+    "id": 11,
     "league": "Diamond",
     "sub_rank": 3,
     "name": "Diamond III",
@@ -132,7 +132,7 @@
     "icon": "icon-diamond"
   },
   {
-    "id": "master_1",
+    "id": 12,
     "league": "Master",
     "sub_rank": 1,
     "name": "Master",

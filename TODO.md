@@ -7,8 +7,7 @@ MODALITA'
    - Se esci dalla teoria, inizia a giocare stockfish.
 3. Ranked:
    - Sistema a leghe con difficoltà progressiva.
-   - Partite di riscaldamento vs stockfish.
-   - Per scalare mini partita (torneo) vs stockfish.
+   - Per scalare partita (torneo) vs stockfish.
    - Distinguere in due mod: rapid (10) e blitz (5).
 4. Stats & impostazioni:
    - Riepilogo dei rank.
