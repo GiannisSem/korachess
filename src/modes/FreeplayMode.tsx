@@ -6,8 +6,8 @@ import ColorSelector from "../components/ColorSelector.tsx";
 import Button from "../components/Button.tsx";
 import type {Color} from "chess.js";
 import {useStockfish} from "../hooks/useStockfish.ts";
-import themes from "../assets/themes.json";
 import {requestEngineMove} from "../services/chessUtils.ts";
+import {getTheme} from "../services/utils.ts";
 
 function FreeplayMode() {
     const stockfish = useStockfish();
@@ -74,7 +74,7 @@ function FreeplayMode() {
                     <div className="board-stage">
                         <ChessBoard
                             onEndGame={handleEndGame}
-                            theme={themes[2]}
+                            theme={getTheme(localStorage.getItem("theme") ?? "classic")}
                             playerColor={color}
                             reversed={color === "b"}
                             onMove={handlePlayerMove}

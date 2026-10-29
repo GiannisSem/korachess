@@ -1,44 +1,51 @@
 import ThemeSelector from "../components/ThemeSelector.tsx";
 import {useRef, useState} from "react";
 import Button from "../components/Button.tsx";
-import type {LastFiveGames_LS, Level} from "../types.ts";
+import type {Level} from "../types.ts";
 import ranks from "../assets/ranks.json"
+
+import "../styles/SettingsMode.css"
 
 function SettingsMode() {
     const rapid = () => {
-        if (!localStorage.getItem("rapid")) {
+        const raw = localStorage.getItem("rapid");
+
+        if (!raw) {
             const baseLevel: Level = { matches: [], rank_id: 0 }
             localStorage.setItem("rapid", JSON.stringify(baseLevel));
             return baseLevel;
         }
 
-        const raw = localStorage.getItem("rapid");
-        if (!raw) return;
-
         return JSON.parse(raw);
     }
 
     const blitz = () => {
-        if (!localStorage.getItem("blitz")) {
+        const raw = localStorage.getItem("blitz");
+
+        if (!raw) {
             const baseLevel: Level = { matches: [], rank_id: 0 }
             localStorage.setItem("blitz", JSON.stringify(baseLevel));
             return baseLevel;
         }
 
-        const raw = localStorage.getItem("blitz");
-        if (!raw) return;
         return JSON.parse(raw);
     }
 
-    const lastV = () => {
-        if (!localStorage.getItem("lastV")) {
-            const lastV: LastFiveGames_LS = { results: [], colors: [] }
-            localStorage.setItem("lastV", JSON.stringify(lastV));
-        }
+    const lastV = (): [1 | 0.5 | 0, 'w' | 'b'][] => {
         const raw = localStorage.getItem("lastV");
-        if (!raw) return;
-        return JSON.parse(raw);
-    }
+
+        if (!raw) {
+            const base: [1 | 0.5 | 0, 'w' | 'b'][] = [];
+            localStorage.setItem("lastV", JSON.stringify(base));
+            return base;
+        }
+
+        try {
+            return JSON.parse(raw);
+        } catch {
+            return [];
+        }
+    };
 
     const [username, setUsername] = useState<string>(() => {
         return localStorage.getItem("username") ?? "User";
@@ -47,8 +54,12 @@ function SettingsMode() {
     const inputRef = useRef<HTMLInputElement>(null);
 
     const handleChangeUsername = () => {
-        setUsername(inputRef.current?.value ?? "");
-        localStorage.setItem("username", username);
+        const user = inputRef.current?.value ?? "User";
+        setUsername(user);
+        localStorage.setItem("username", user);
+
+        if (inputRef.current)
+            inputRef.current.value = "";
     }
 
     const [currentTheme, setCurrentTheme] = useState<string>(() => {

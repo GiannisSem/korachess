@@ -1,11 +1,8 @@
-// da rimuovere in futuro
-import themes from '../assets/themes.json';
-
-// imports
 import {ChessBoard, type MovePayload} from "../components/ChessBoard";
 import {useState} from "react";
 import {useStockfish} from "../hooks/useStockfish.ts";
 import {requestEngineMove} from "../services/chessUtils.ts";
+import {getTheme} from "../services/utils.ts";
 
 function RankedMode() {
     const stockfish = useStockfish();
@@ -24,7 +21,7 @@ function RankedMode() {
         <div className="board-stage">
             <ChessBoard
                 onEndGame={(reason) => console.log('Game ended:', reason)}
-                theme={themes[2]}
+                theme={getTheme(localStorage.getItem("theme") ?? "classic")}
                 reversed={false}
                 playerColor="w"
                 onMove={handlePlayerMove}

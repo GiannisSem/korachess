@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import themes from "../assets/themes.json";
 import {dropdownListStyle, itemStyle, subLabelStyle, triggerButtonStyle, wrapperStyle} from "../styles/selector.ts"
+import type {BoardTheme} from "./ChessBoard";
 
 interface ThemeSelectorProps {
     currentTheme: string;
@@ -51,22 +52,22 @@ export default function ThemeSelector({ currentTheme, onClick }: ThemeSelectorPr
             {isOpen && (
                 <div style={dropdownListStyle}>
                     {/* Voci da Themes.json */}
-                    {themes.map((theme: any) => {
-                        const isSelected = selectedTheme === theme;
+                    {themes.map((theme: BoardTheme) => {
+                        const isSelected = selectedTheme === theme.name;
 
                         return (
                             <div
-                                key={theme}
-                                onClick={() => handleSelect(theme)}
+                                key={theme.name}
+                                onClick={() => handleSelect(theme.name)}
                                 style={{
                                     ...itemStyle,
                                     backgroundColor: isSelected ? "#2563eb" : "transparent",
                                     fontWeight: isSelected ? 600 : 400,
                                 }}
                             >
-                                <span>{theme}</span>
+                                <span>{theme.name}</span>
                                 {theme && (
-                                    <span style={subLabelStyle}>{theme}</span>
+                                    <span style={subLabelStyle}>{theme.light} {theme.dark}</span>
                                 )}
                             </div>
                         );

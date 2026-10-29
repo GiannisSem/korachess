@@ -1,0 +1,168 @@
+/* Layout principale a cascata */
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 1.5rem;
+    max-width: 480px;
+    margin: 0 auto;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #1f2937;
+    box-sizing: border-box;
+}
+
+/* ============================================================
+   SEZIONE 1: Quadrati Grandi (Rank Rapid verde e Blitz giallo)
+   ============================================================ */
+.ranks-section {
+    display: flex;
+    gap: 1.25rem;
+    width: 100%;
+}
+
+.rank-box {
+    flex: 1;
+    aspect-ratio: 1 / 1; /* Mantiene la forma perfettamente quadrata */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+.rank-box h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.85;
+}
+
+.rank-box .rank-score {
+    font-size: 1.4rem;
+    font-weight: 700;
+    word-break: break-word;
+}
+
+/* Rank Rapid: Verde */
+.rank-box.rapid {
+    background-color: #22c55e;
+    color: #ffffff;
+}
+
+/* Rank Blitz: Giallo */
+.rank-box.blitz {
+    background-color: #eab308;
+    color: #1a1a1a;
+}
+
+/* ============================================================
+   SEZIONE 2: Quadratini (Ultimi 5 Risultati)
+   ============================================================ */
+.results-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.results-section h3 {
+    margin: 0;
+    font-size: 1rem;
+    color: #4b5563;
+}
+
+.results-grid {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+    width: 100%;
+}
+
+.result-box {
+    flex: 1;
+    min-height: 52px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-align: center;
+    background-color: #e5e7eb;
+    border: 1px solid #d1d5db;
+    box-sizing: border-box;
+    padding: 4px;
+}
+
+/* Colori di stato per esito match (se applicati tramite result-box) */
+.result-box.result-1 {
+    background-color: #86efac;
+    color: #14532d;
+    border-color: #4ade80;
+}
+
+.result-box.result-0 {
+    background-color: #fca5a5;
+    color: #7f1d1d;
+    border-color: #f87171;
+}
+
+.result-box.result-0\.5 {
+    background-color: #cbd5e1;
+    color: #334155;
+    border-color: #94a3b8;
+}
+
+/* ============================================================
+   SEZIONE 3: Impostazioni
+   ============================================================ */
+.settings-section {
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1.25rem;
+}
+
+.settings-section h3 {
+    margin: 0 0 1.25rem 0;
+    font-size: 1.1rem;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 0.5rem;
+}
+
+.settings-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.settings-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #374151;
+}
+
+/* Input text e pulsante per l'username */
+.settings-form input[type="text"] {
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.15s ease;
+    box-sizing: border-box;
+}
+
+.settings-form input[type="text"]:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
