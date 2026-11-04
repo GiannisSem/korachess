@@ -1,17 +1,17 @@
-import ThemeSelector from "../components/ThemeSelector.tsx";
 import {useRef, useState} from "react";
 import Button from "../components/Button.tsx";
 import type {Level} from "../types.ts";
-import ranks from "../assets/ranks.json"
+import themes from "../assets/themes.json";
 
 import "../styles/SettingsMode.css"
+import Selector from "../components/Selector.tsx";
 
 function SettingsMode() {
     const rapid = () => {
         const raw = localStorage.getItem("rapid");
 
         if (!raw) {
-            const baseLevel: Level = { matches: [], rank_id: 0 }
+            const baseLevel: Level = { matches: [], rank: "Bronze I" }
             localStorage.setItem("rapid", JSON.stringify(baseLevel));
             return baseLevel;
         }
@@ -23,7 +23,7 @@ function SettingsMode() {
         const raw = localStorage.getItem("blitz");
 
         if (!raw) {
-            const baseLevel: Level = { matches: [], rank_id: 0 }
+            const baseLevel: Level = { matches: [], rank: "Bronze I" }
             localStorage.setItem("blitz", JSON.stringify(baseLevel));
             return baseLevel;
         }
@@ -54,6 +54,10 @@ function SettingsMode() {
     const inputRef = useRef<HTMLInputElement>(null);
 
     const handleChangeUsername = () => {
+        if (inputRef.current?.value === "") {
+            return;
+        }
+
         const user = inputRef.current?.value ?? "User";
         setUsername(user);
         localStorage.setItem("username", user);
@@ -71,10 +75,6 @@ function SettingsMode() {
         localStorage.setItem("theme", selectedTheme);
     }
 
-    const showRank = (mode: Level): string => {
-        return ranks[mode.rank_id].name;
-    }
-
     return (
         <div className="dashboard-container">
 
@@ -82,11 +82,11 @@ function SettingsMode() {
             <div className="ranks-section">
                 <div className="rank-box blitz">
                     <h3>Blitz</h3>
-                    <span className="rank-score">{showRank(blitz())}</span>
+                    <span className="rank-score">{blitz().rank}</span>
                 </div>
                 <div className="rank-box rapid">
                     <h3>Rapid</h3>
-                    <span className="rank-score">{showRank(rapid())}</span>
+                    <span className="rank-score">{rapid().rank}</span>
                 </div>
             </div>
 
@@ -122,8 +122,10 @@ function SettingsMode() {
                     </label>
 
                     <label>
-                        Theme
-                        <ThemeSelector currentTheme={currentTheme} onClick={handleSelectTheme} />
+                        Current theme: {currentTheme}
+                        <Selector elements={themes.map((theme) => theme.name)}
+                                  onClick={handleSelectTheme}
+                        />
                     </label>
                 </div>
             </div>

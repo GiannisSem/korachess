@@ -1,13 +1,15 @@
 import {ChessBoard, type MovePayload} from "../components/ChessBoard";
 import {useState} from "react";
-import DifficultySelector from "../components/DifficultySelector.tsx";
 import type {Rank} from "../types.ts";
-import ColorSelector from "../components/ColorSelector.tsx";
+import ColorPicker from "../components/ColorPicker.tsx";
 import Button from "../components/Button.tsx";
 import type {Color} from "chess.js";
 import {useStockfish} from "../hooks/useStockfish.ts";
 import {requestEngineMove} from "../services/chessUtils.ts";
 import {getTheme} from "../services/utils.ts";
+import Selector from "../components/Selector.tsx";
+
+import ranks from "../assets/ranks.json";
 
 function FreeplayMode() {
     const stockfish = useStockfish();
@@ -61,8 +63,10 @@ function FreeplayMode() {
             {
                 !started && (
                     <>
-                        <ColorSelector onClick={handleColor} />
-                        <DifficultySelector onClick={handleDifficulty} />
+                        <ColorPicker onClick={handleColor} />
+                        <Selector firstRowText="Select a rank"
+                                  elements={ranks.map((rank) => rank.name)}
+                                  onClick={handleDifficulty} />
                         <br />
                         <Button content={"Inizia partita"} onClick={handleStart} />
                     </>

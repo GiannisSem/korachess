@@ -1,14 +1,15 @@
 import { useState, useRef, useEffect } from "react";
-import ranks from "../assets/ranks.json";
-import {dropdownListStyle, itemStyle, subLabelStyle, triggerButtonStyle, wrapperStyle} from "../styles/selector.ts"
+import {dropdownListStyle, itemStyle, triggerButtonStyle, wrapperStyle} from "../styles/selector.ts"
 
-interface DifficultySelectorProps {
-    onClick: (selectedRank: any | null) => void;
+interface SelectorProps {
+    firstRowText?: string;
+    elements: string[]
+    onClick: (selected: any | null) => void;
 }
 
-export default function DifficultySelector({ onClick }: DifficultySelectorProps) {
+export default function Selector({ firstRowText, elements, onClick }: SelectorProps) {
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedRank, setSelectedRank] = useState<any | null>(null);
+    const [selected, setSelected] = useState<any | null>(null);
     const dropdownRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -22,10 +23,10 @@ export default function DifficultySelector({ onClick }: DifficultySelectorProps)
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
-    const handleSelect = (rank: any | null) => {
-        setSelectedRank(rank);
+    const handleSelect = (item: any | null) => {
+        setSelected(item);
         setIsOpen(false);
-        onClick(rank);
+        onClick(item);
     };
 
     return (
@@ -37,9 +38,9 @@ export default function DifficultySelector({ onClick }: DifficultySelectorProps)
                 style={triggerButtonStyle}
             >
                 <span>
-                    {selectedRank
-                        ? (selectedRank.name || selectedRank.title || `Rank ${selectedRank.id}`)
-                        : "Select a rank"}
+                    {selected
+                        ? selected
+                        : firstRowText}
                 </span>
                 <span style={{ transform: isOpen ? "rotate(180deg)" : "rotate(0deg)", transition: "0.2s" }}>
                     ▼
@@ -50,37 +51,38 @@ export default function DifficultySelector({ onClick }: DifficultySelectorProps)
             {isOpen && (
                 <div style={dropdownListStyle}>
                     {/* Prima opzione: Reset / Null */}
-                    <div
-                        onClick={() => handleSelect(null)}
-                        style={{
-                            ...itemStyle,
-                            backgroundColor: selectedRank === null ? "#2563eb" : "transparent",
-                            fontWeight: selectedRank === null ? 600 : 400,
-                            fontStyle: "italic",
-                            color: "#9ca3af",
-                        }}
-                    >
-                        <span>Select a rank</span>
-                    </div>
+                    {
+                        firstRowText && (
+                            <div
+                                onClick={() => handleSelect(null)}
+                                style={{
+                                    ...itemStyle,
+                                    backgroundColor: selected === null ? "#2563eb" : "transparent",
+                                    fontWeight: selected === null ? 600 : 400,
+                                    fontStyle: "italic",
+                                    color: "#9ca3af",
+                                }}
+                            >
+                                <span>{firstRowText}</span>
+                            </div>
+                        )
+                    }
 
-                    {/* Voci da ranks.json */}
-                    {ranks.map((rank: any) => {
-                        const isSelected = selectedRank?.id === rank.id;
+                    {/* Voci da items.json */}
+                    {elements.map((item: any, index: number) => {
+                        const isSelected = selected === item;
 
                         return (
                             <div
-                                key={rank.id}
-                                onClick={() => handleSelect(rank)}
+                                key={index}
+                                onClick={() => handleSelect(item)}
                                 style={{
                                     ...itemStyle,
                                     backgroundColor: isSelected ? "#2563eb" : "transparent",
                                     fontWeight: isSelected ? 600 : 400,
                                 }}
                             >
-                                <span>{rank.name || rank.title || `Rank ${rank.id}`}</span>
-                                {rank.difficulty && (
-                                    <span style={subLabelStyle}>{rank.difficulty}</span>
-                                )}
+                                <span>{item}</span>
                             </div>
                         );
                     })}

@@ -22,7 +22,7 @@ export interface Match {
 
 export interface Level {
     matches: Match[];
-    rank_id: number;
+    rank: string;
 }
 
 // localStorage

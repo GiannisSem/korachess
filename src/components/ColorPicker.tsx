@@ -7,7 +7,7 @@ interface ColorSelectorProps {
     onClick: (color: Color | undefined) => void;
 }
 
-export default function ColorSelector({ onClick }: ColorSelectorProps) {
+export default function ColorPicker({ onClick }: ColorSelectorProps) {
     const [selectedColor, setSelectedColor] = useState<Color | undefined>(undefined);
 
     const handleSelect = (color: Color | undefined) => {
