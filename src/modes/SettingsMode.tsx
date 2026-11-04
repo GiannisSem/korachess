@@ -92,7 +92,7 @@ function SettingsMode() {
 
             {/* SEZIONE 2: Quadratini (Ultimi 5 risultati) */}
             <div className="results-section">
-                <h3>Ultimi Risultati</h3>
+                <h3>Last results</h3>
                 <div className="results-grid">
                     {lastV().map((res: any, index: number) => (
                         <div key={index} className={`result-box result-${res}`}>
@@ -101,8 +101,11 @@ function SettingsMode() {
                     ))}
                     {lastV().length < 5 && (
                         <>
-                            { // aggiungi celle vuote
-                            }
+                            {Array.from({ length: 5-lastV().length }, (_, index) => (
+                                <div key={index} className={`result-box result-none`}>
+                                    ...
+                                </div>
+                            ))}
                         </>
                     )}
                 </div>

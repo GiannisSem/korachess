@@ -97,6 +97,7 @@
     border: 1px solid #d1d5db;
     box-sizing: border-box;
     padding: 4px;
+    cursor: default;
 }
 
 /* Colori di stato per esito match (se applicati tramite result-box) */
@@ -113,6 +114,12 @@
 }
 
 .result-box.result-0\.5 {
+    background-color: #cbd5e1;
+    color: #334155;
+    border-color: #94a3b8;
+}
+
+.result-box.result-none {
     background-color: #cbd5e1;
     color: #334155;
     border-color: #94a3b8;
