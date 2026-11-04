@@ -14,7 +14,7 @@ const MODE_CONTENT: Record<string, { eyebrow: string; title: string; description
     ranked: {
         eyebrow: "Game",
         title: "Play against Stockfish",
-        description: "You play as White.",
+        description: "Ranked game",
     },
     free: {
         eyebrow: "Casual game",
