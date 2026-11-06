@@ -1,10 +1,10 @@
-export type LeagueTier = 'Bronze' | 'Silver' | 'Gold' | 'Platinum' | 'Diamond' | 'Master';
-export type SubRank = 1 | 2 | 3;
+//export type LeagueTier = 'Bronze' | 'Silver' | 'Gold' | 'Platinum' | 'Diamond' | 'Master';
+//export type SubRank = 1 | 2 | 3;
 
 export interface Rank {
     id: number;
-    league: LeagueTier;
-    sub_rank: SubRank;
+    league: string;
+    sub_rank: number;
     name: string;
     elo: number;
     depth: number;

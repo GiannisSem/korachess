@@ -8,8 +8,8 @@ import type {Color} from "chess.js";
 
 interface FreeplayGameProps {
     line: string;
-    color: Color | undefined;
-    difficulty: Rank | null;
+    color: Color;
+    difficulty: Rank;
     handleEndGame: (reason: "checkmate" | "stalemate" | "draw", pgn: string) => void;
 }
 
@@ -39,6 +39,7 @@ function FreeplayGame({line, color, difficulty, handleEndGame}: FreeplayGameProp
     return (
         <div className="board-stage">
             <ChessBoard
+                initialFen={initialFen}
                 onEndGame={handleEndGame}
                 theme={getTheme(localStorage.getItem("theme") ?? "classic")}
                 playerColor={color}

@@ -7,7 +7,7 @@
     "elo": 400,
     "depth": 2,
     "rankUpScore": 2.0,
-    "rankDownScore": null,
+    "rankDownScore": -1.0,
     "icon": "icon-bronze"
   },
   {
@@ -138,7 +138,7 @@
     "name": "Master",
     "elo": 2850,
     "depth": 16,
-    "rankUpScore": null,
+    "rankUpScore": 1000.0,
     "rankDownScore": 2.0,
     "icon": "icon-master"
   }
