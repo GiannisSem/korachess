@@ -1,9 +1,10 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { Chess, type Square, Move } from 'chess.js';
 import type {ChessBoardProps, PendingPromotion} from '../types';
+import {STARTING_FEN} from "../../../services/chessUtils.ts";
 
 export function useChessGame({
-                                 initialFen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                                 initialFen = STARTING_FEN,
                                  playerColor,
                                  engineMove,
                                  onMove,

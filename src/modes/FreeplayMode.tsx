@@ -38,6 +38,9 @@ function FreeplayMode() {
     const handleStart = () => {
         if (!difficulty) return;
 
+        const chosenColor = color ?? (Math.random() < 0.5 ? "w" : "b");
+        setColor(chosenColor);
+
         // errore che non cambia opening e line dentro al metodo
         let o = opening;
         let l = line;
@@ -97,7 +100,7 @@ function FreeplayMode() {
             {
                 started && (
                     <FreeplayGame line={line[1]}
-                                  color={color ?? Math.random() < 0.5 ? "w" : "b"}
+                                  color={color!}
                                   difficulty={difficulty ?? ranks[0]}
                                   handleEndGame={handleEndGame}
                     />

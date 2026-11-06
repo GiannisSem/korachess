@@ -1,8 +1,8 @@
 import {ChessBoard, type MovePayload} from "./ChessBoard";
 import {getTheme} from "../services/utils.ts";
-import {requestEngineMove} from "../services/chessUtils.ts";
+import {getFirstFen, requestEngineMove} from "../services/chessUtils.ts";
 import {useStockfish} from "../hooks/useStockfish.ts";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import type {Rank} from "../types.ts";
 import type {Color} from "chess.js";
 
@@ -17,15 +17,13 @@ function FreeplayGame({line, color, difficulty, handleEndGame}: FreeplayGameProp
     const stockfish = useStockfish();
     const [engineMove, setEngineMove] = useState<MovePayload>();
 
-    // ??? inserire da qualche parte, capire come fare a far partire la board.fen in base a colore / linea...
-    const x = () => {
-        console.log(line)
-        if (difficulty && stockfish) {
+    useEffect(() => {
+        if (stockfish) {
             // aggiorna stockfish
             stockfish.startNewGame();
             stockfish.setElo(difficulty.elo)
         }
-    }
+    }, [stockfish]);
 
     const handlePlayerMove = (fen: string) => {
         requestEngineMove({
@@ -39,7 +37,7 @@ function FreeplayGame({line, color, difficulty, handleEndGame}: FreeplayGameProp
     return (
         <div className="board-stage">
             <ChessBoard
-                initialFen={initialFen}
+                initialFen={getFirstFen((color === "w") ? "start" : line.split(' ')[0])}
                 onEndGame={handleEndGame}
                 theme={getTheme(localStorage.getItem("theme") ?? "classic")}
                 playerColor={color}
