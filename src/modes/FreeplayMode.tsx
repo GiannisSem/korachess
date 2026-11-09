@@ -18,18 +18,6 @@ function FreeplayMode() {
 
     const [gameEnded, setGameEnded] = useState("");
 
-    const handleColor = (color: Color | undefined) => {
-        setColor(color);
-    }
-
-    const handleDifficulty = (selectedRank: Rank) => {
-        setDifficulty(selectedRank)
-    }
-
-    const handleOpening = (opening: string) => {
-        setOpening(opening);
-    }
-
     const handleLine = (line: string) => {
         setLine(openings.find((op) => op.opening === opening)!.lines.find((li) => li[0] === line)!);
     }
@@ -86,16 +74,16 @@ function FreeplayMode() {
             {
                 !started && (
                     <>
-                        <ColorPicker onClick={handleColor} />
+                        <ColorPicker onClick={setColor} />
                         <Selector firstRowText="Select a rank"
                                   elements={ranks.map((rank) => rank.name)}
-                                  onClick={handleDifficulty} />
+                                  onClick={setDifficulty} />
                         <Selector firstRowText="Random opening"
                                   elements={color
                                       ? openings.filter((op) => op.color === color).map((op) => op.opening)
                                       : openings.map((op) => op.opening)
                                     }
-                                  onClick={handleOpening}
+                                  onClick={setOpening}
                         />
                         { opening && (
                             <Selector firstRowText="Random line"
