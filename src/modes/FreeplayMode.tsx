@@ -71,6 +71,15 @@ function FreeplayMode() {
         await navigator.clipboard.writeText(pgn);
     }
 
+    const handleReset = () => {
+        setColor(undefined);
+        setDifficulty(null);
+        setOpening("");
+        setLine([]);
+        setGameEnded("");
+        setStarted(false);
+    }
+
     return (
         <div>
             {
@@ -81,7 +90,10 @@ function FreeplayMode() {
                                   elements={ranks.map((rank) => rank.name)}
                                   onClick={handleDifficulty} />
                         <Selector firstRowText="Random opening"
-                                  elements={openings.map((op) => op.opening)}
+                                  elements={color
+                                      ? openings.filter((op) => op.color === color).map((op) => op.opening)
+                                      : openings.map((op) => op.opening)
+                                    }
                                   onClick={handleOpening}
                         />
                         { opening && (
@@ -109,7 +121,10 @@ function FreeplayMode() {
 
             {
                 gameEnded !== "" && (
-                    <p>Partita finita per {gameEnded}</p>
+                    <>
+                        <p>Partita finita per {gameEnded}</p>
+                        <Button content="Back" onClick={handleReset}/>
+                    </>
                     // nuova partita o altro
                 )
             }

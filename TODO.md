@@ -27,6 +27,7 @@ FUNZIONALITA' PLUS
 - Frecce o tasti <- -> per movimento tra mosse. (anche no)
 
 FIXES:
+- aperture.json già in ordine alfabetico
 
 MIGLIORIE:
 - Migliora frecce.
