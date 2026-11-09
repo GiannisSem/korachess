@@ -22,7 +22,7 @@ DECORAZIONI
 - Effetti audio.
 
 FUNZIONALITA' PLUS
-- Esporta pgn. (esistente ma da aggiungere in giro)
+- Esporta pgn. (esistente ma da aggiungere in giro): anche click 5 partite impostazioni.
 - Apri analisi con lichess.
 - Frecce o tasti <- -> per movimento tra mosse. (anche no)
 

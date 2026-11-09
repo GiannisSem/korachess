@@ -1,4 +1,4 @@
-import type {Square, PieceSymbol, Color} from 'chess.js';
+import {type Square, type PieceSymbol, type Color, Move} from 'chess.js';
 
 export type PieceColor = Color; // 'w' | 'b'
 
@@ -35,7 +35,7 @@ export interface ChessBoardProps {
     engineArrows?: ArrowData[];
     reversed?: boolean;
     theme?: BoardTheme;
-    onMove?: (fen: string) => void;
+    onMove?: (res: Move, fen: string) => void;
     onEndGame?: (reason: 'checkmate' | 'stalemate' | 'draw', pgn: string) => void;
     viewOnly?: boolean;
 }

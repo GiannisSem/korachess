@@ -30,8 +30,8 @@ function FreeplayMode() {
         setOpening(opening);
     }
 
-    const handleLine = (line: string[]) => {
-        setLine(line);
+    const handleLine = (line: string) => {
+        setLine(openings.find((op) => op.opening === opening)!.lines.find((li) => li[0] === line)!);
     }
 
     // filtra per colore le aperture da scegliere
@@ -62,7 +62,8 @@ function FreeplayMode() {
 
         setOpening(o);
         setLine(l);
-
+        console.log("start");
+        console.log(l);
         setStarted(true);
     }
 

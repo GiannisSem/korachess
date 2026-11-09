@@ -63,7 +63,7 @@ export function useChessGame({
                 checkGameEnd();
 
                 if (onMove) {
-                    onMove(chessRef.current.fen());
+                    onMove(res, chessRef.current.fen());
                 }
             }
         } catch (e) {
