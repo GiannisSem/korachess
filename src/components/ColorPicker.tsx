@@ -26,9 +26,9 @@ export default function ColorPicker({ onClick }: ColorSelectorProps) {
                     borderColor: selectedColor === "w" ? "#3b82f6" : "#374151",
                     backgroundColor: selectedColor === "w" ? "#1e293b" : "#111827",
                 }}
-                title="Gioca col Bianco"
+                title="Play as white"
             >
-                <img src={wK} alt="Re Bianco" style={iconStyle} />
+                <img src={wK} alt="White king" style={iconStyle} />
             </button>
 
             {/* Random */}
@@ -40,11 +40,11 @@ export default function ColorPicker({ onClick }: ColorSelectorProps) {
                     borderColor: selectedColor === undefined ? "#3b82f6" : "#374151",
                     backgroundColor: selectedColor === undefined ? "#1e293b" : "#111827",
                 }}
-                title="Colore Casuale"
+                title="Random color"
             >
                 <div style={randomIconWrapperStyle}>
-                    <img src={wK} alt="Bianco" style={halfIconWhiteStyle} />
-                    <img src={bK} alt="Nero" style={halfIconBlackStyle} />
+                    <img src={wK} alt="w" style={halfIconWhiteStyle} />
+                    <img src={bK} alt="b" style={halfIconBlackStyle} />
                 </div>
             </button>
 
@@ -57,9 +57,9 @@ export default function ColorPicker({ onClick }: ColorSelectorProps) {
                     borderColor: selectedColor === "b" ? "#3b82f6" : "#374151",
                     backgroundColor: selectedColor === "b" ? "#1e293b" : "#111827",
                 }}
-                title="Gioca col Nero"
+                title="Play as black"
             >
-                <img src={bK} alt="Re Nero" style={iconStyle} />
+                <img src={bK} alt="Black king" style={iconStyle} />
             </button>
         </div>
     );

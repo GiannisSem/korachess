@@ -1,10 +1,10 @@
 import {ChessBoard, type MovePayload} from "./ChessBoard";
 import {getTheme} from "../services/utils.ts";
-import {getFirstFen, requestEngineMove} from "../services/chessUtils.ts";
+import {getCurrentMove, getFirstFen, requestEngineMove} from "../services/chessUtils.ts";
 import {useStockfish} from "../hooks/useStockfish.ts";
 import {useEffect, useState} from "react";
 import type {Rank} from "../types.ts";
-import type {Color, Move, PieceSymbol, Square} from "chess.js";
+import type {Color, Move} from "chess.js";
 
 interface FreeplayGameProps {
     line: string;
@@ -29,22 +29,14 @@ function FreeplayGame({line, color, difficulty, handleEndGame}: FreeplayGameProp
         }
     }, [stockfish]);
 
-    const getCurrentMove = (count: number): MovePayload => {
-        return {
-            from: lineMoves[count].substring(0, 2) as Square,
-            to: lineMoves[count].substring(2, 4) as Square,
-            promotion: lineMoves.length == 5 ? lineMoves[count][5] as PieceSymbol : undefined
-        }
-    }
-
     const handlePlayerMove = (move: Move, fen: string) => {
         if (inTheory && counter < lineMoves.length-2) {
             console.log("move: " + lineMoves[counter+3]);
             setCounter(counter + 2);
-            const tmove = getCurrentMove(counter + 1);
+            const tmove = getCurrentMove(lineMoves[counter+1]);
 
             if (move.from === tmove.from && move.to === tmove.to) {
-                setEngineMove(getCurrentMove(counter + 2));
+                setEngineMove(getCurrentMove(lineMoves[counter+2]));
                 return;
             } else {
                 setInTheory(false);

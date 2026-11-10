@@ -30,6 +30,10 @@ export function useChessGame({
     }, [onEndGame]);
 
     useEffect(() => {
+        setViewOnly(viewOnly);
+    }, [viewOnly]);
+
+    useEffect(() => {
         if (!isViewOnly) return;
         setSelectedSquare(null);
         setLegalMoves([]);
@@ -60,11 +64,19 @@ export function useChessGame({
                 setLastMove({ from: res.from, to: res.to });
                 setSelectedSquare(null);
                 setLegalMoves([]);
-                checkGameEnd();
 
-                if (onMove) {
-                    onMove(res, chessRef.current.fen());
+                if (onMove?.(res, game.fen()) === false) {
+                    game.undo();
+                    setFen(game.fen());
+                    const history = game.history({ verbose: true });
+                    const previousMove = history[history.length - 1];
+                    setLastMove(previousMove
+                        ? { from: previousMove.from, to: previousMove.to }
+                        : null);
+                    return;
                 }
+
+                checkGameEnd();
             }
         } catch (e) {
             console.error('Mossa non valida:', e);

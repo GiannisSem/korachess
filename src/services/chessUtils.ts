@@ -25,6 +25,8 @@ export function parseUciMove(uciMove: string): MovePayload | null {
 export const STARTING_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 
 export function getFirstFen(uciMove: string): string {
+    if (!uciMove) return STARTING_FEN;
+
     switch (uciMove.toLowerCase().trim()) {
         // --- Spinte di Pedone di 2 case (creano target en-passant, halfmove = 0) ---
         case "e2e4":
@@ -124,4 +126,12 @@ export function requestEngineMove({
 
         onMove(parsedMove);
     });
+}
+
+export function getCurrentMove(move: string): MovePayload {
+    return {
+        from: move.substring(0, 2) as Square,
+        to: move.substring(2, 4) as Square,
+        promotion: move.length == 5 ? move[5] as PieceSymbol : undefined
+    }
 }

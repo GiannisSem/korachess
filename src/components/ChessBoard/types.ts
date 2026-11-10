@@ -35,7 +35,7 @@ export interface ChessBoardProps {
     engineArrows?: ArrowData[];
     reversed?: boolean;
     theme?: BoardTheme;
-    onMove?: (res: Move, fen: string) => void;
+    onMove?: (res: Move, fen: string) => boolean | void;
     onEndGame?: (reason: 'checkmate' | 'stalemate' | 'draw', pgn: string) => void;
     viewOnly?: boolean;
 }

@@ -74,10 +74,8 @@ function FreeplayMode() {
             {
                 !started && (
                     <>
+                        <p>For playing an opening with the opposite color, just select the opening then select the opposite color.</p>
                         <ColorPicker onClick={setColor} />
-                        <Selector firstRowText="Select a rank"
-                                  elements={ranks.map((rank) => rank.name)}
-                                  onClick={setDifficulty} />
                         <Selector firstRowText="Random opening"
                                   elements={color
                                       ? openings.filter((op) => op.color === color).map((op) => op.opening)
@@ -92,6 +90,10 @@ function FreeplayMode() {
                                       onClick={handleLine}
                             />
                         )}
+                        <br />
+                        <Selector firstRowText="Select a rank"
+                                  elements={ranks.map((rank) => rank.name)}
+                                  onClick={setDifficulty} />
                         <br />
                         <Button content={"Inizia partita"} onClick={handleStart} />
                     </>
