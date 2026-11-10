@@ -20,6 +20,7 @@ DECORAZIONI
 - In alto mettere il un blocco StockfishReady. (fatto)
 - Inserisci set colori scacchiera. (fatto)
 - Effetti audio.
+- Colori frecce dentro a theme.
 
 FUNZIONALITA' PLUS
 - Esporta pgn. (esistente ma da aggiungere in giro): anche click 5 partite impostazioni.
