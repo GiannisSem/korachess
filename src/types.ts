@@ -26,8 +26,8 @@ export interface Level {
 }
 
 // localStorage
-// username, theme, rapid: Level, blitz: Level, lastV: [1 | 0.5 | 0, 'w' | 'b']
-export interface CurrentGame_LS {
+// username, theme, rapid: Level, blitz: Level, lastV: FinishedGame[]
+export interface CurrentGame {
     playerColor: 'w' | 'b';
-    pgn: string;
+    fen: string;
 }

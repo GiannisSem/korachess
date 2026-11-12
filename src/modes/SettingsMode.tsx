@@ -1,6 +1,6 @@
 import {useRef, useState} from "react";
 import Button from "../components/Button.tsx";
-import type {Level} from "../types.ts";
+import type {Level, Match} from "../types.ts";
 import themes from "../assets/themes.json";
 
 import "../styles/SettingsMode.css"
@@ -31,11 +31,11 @@ function SettingsMode() {
         return JSON.parse(raw);
     }
 
-    const lastV = (): [1 | 0.5 | 0, 'w' | 'b'][] => {
+    const lastV = (): Match[] => {
         const raw = localStorage.getItem("lastV");
 
         if (!raw) {
-            const base: [1 | 0.5 | 0, 'w' | 'b'][] = [];
+            const base: Match[] = [];
             localStorage.setItem("lastV", JSON.stringify(base));
             return base;
         }
@@ -72,7 +72,7 @@ function SettingsMode() {
 
     const handleSelectTheme = (selectedTheme: string) => {
         setCurrentTheme(selectedTheme);
-        localStorage.setItem("theme", selectedTheme);
+        localStorage.setItem("theme", selectedTheme ?? "classic");
     }
 
     return (
@@ -94,9 +94,9 @@ function SettingsMode() {
             <div className="results-section">
                 <h3>Last results</h3>
                 <div className="results-grid">
-                    {lastV().map((res: any, index: number) => (
-                        <div key={index} className={`result-box result-${res}`}>
-                            {res.matches[index]} color: {res.colors[index]}
+                    {lastV().map((item: Match, index: number) => (
+                        <div key={index} className={`result-box result-${item.result}`} onClick={async () => await navigator.clipboard.writeText(item.pgn)}>
+                            {item.result} color: {item.playerColor}
                         </div>
                     ))}
                     {lastV().length < 5 && (
@@ -121,12 +121,13 @@ function SettingsMode() {
                         <Button content={"Change"} onClick={handleChangeUsername} />
                     </label>
 
-                    <label>
+                    <div>
                         Current theme: {currentTheme}
-                        <Selector elements={themes.map((theme) => theme.name)}
+                        <Selector firstRowText="Select a theme"
+                                  elements={themes.map((theme) => theme.name)}
                                   onClick={handleSelectTheme}
                         />
-                    </label>
+                    </div>
                 </div>
             </div>
 
