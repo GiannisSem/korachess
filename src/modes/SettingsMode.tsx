@@ -1,52 +1,13 @@
 import {useRef, useState} from "react";
 import Button from "../components/Button.tsx";
-import type {Level, Match} from "../types.ts";
 import themes from "../assets/themes.json";
 
 import "../styles/SettingsMode.css"
 import Selector from "../components/Selector.tsx";
+import ResultGrid from "../components/ResultGrid.tsx";
+import {blitz, lastV, rapid} from "../services/utils.ts";
 
 function SettingsMode() {
-    const rapid = () => {
-        const raw = localStorage.getItem("rapid");
-
-        if (!raw) {
-            const baseLevel: Level = { matches: [], rank: "Bronze I" }
-            localStorage.setItem("rapid", JSON.stringify(baseLevel));
-            return baseLevel;
-        }
-
-        return JSON.parse(raw);
-    }
-
-    const blitz = () => {
-        const raw = localStorage.getItem("blitz");
-
-        if (!raw) {
-            const baseLevel: Level = { matches: [], rank: "Bronze I" }
-            localStorage.setItem("blitz", JSON.stringify(baseLevel));
-            return baseLevel;
-        }
-
-        return JSON.parse(raw);
-    }
-
-    const lastV = (): Match[] => {
-        const raw = localStorage.getItem("lastV");
-
-        if (!raw) {
-            const base: Match[] = [];
-            localStorage.setItem("lastV", JSON.stringify(base));
-            return base;
-        }
-
-        try {
-            return JSON.parse(raw);
-        } catch {
-            return [];
-        }
-    };
-
     const [username, setUsername] = useState<string>(() => {
         return localStorage.getItem("username") ?? "User";
     });
@@ -93,22 +54,7 @@ function SettingsMode() {
             {/* SEZIONE 2: Quadratini (Ultimi 5 risultati) */}
             <div className="results-section">
                 <h3>Last results</h3>
-                <div className="results-grid">
-                    {lastV().map((item: Match, index: number) => (
-                        <div key={index} className={`result-box result-${item.result}`} onClick={async () => await navigator.clipboard.writeText(item.pgn)}>
-                            {item.result} color: {item.playerColor}
-                        </div>
-                    ))}
-                    {lastV().length < 5 && (
-                        <>
-                            {Array.from({ length: 5-lastV().length }, (_, index) => (
-                                <div key={index} className={`result-box result-none`}>
-                                    ...
-                                </div>
-                            ))}
-                        </>
-                    )}
-                </div>
+                <ResultGrid list={lastV()} n={5}/>
             </div>
 
             {/* SEZIONE 3: Impostazioni */}

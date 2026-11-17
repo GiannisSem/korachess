@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { StockfishEngine } from '../services/StockfishEngine';
+import { StockfishEngine } from './StockfishEngine.ts';
 
 export function useStockfish() {
     const [engine, setEngine] = useState<StockfishEngine | null>(null);

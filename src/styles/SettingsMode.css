@@ -98,7 +98,7 @@
     border: 1px solid #d1d5db;
     box-sizing: border-box;
     padding: 4px;
-    cursor: default;
+    cursor: pointer;
 }
 
 /* Colori di stato per esito match (se applicati tramite result-box) */

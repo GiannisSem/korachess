@@ -28,7 +28,7 @@ FUNZIONALITA' PLUS
 - Frecce o tasti <- -> per movimento tra mosse. (anche no)
 
 FIXES:
-- aperture.json già in ordine alfabetico
+- DEPOTENZIA STOCKFISH e vedi errore strano mosse.
 
 MIGLIORIE:
 - Migliora frecce.

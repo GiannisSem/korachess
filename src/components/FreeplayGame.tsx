@@ -1,7 +1,7 @@
 import {ChessBoard, type MovePayload} from "./ChessBoard";
 import {getTheme} from "../services/utils.ts";
 import {getCurrentMove, getFirstFen, requestEngineMove} from "../services/chessUtils.ts";
-import {useStockfish} from "../hooks/useStockfish.ts";
+import {useStockfish} from "../services/useStockfish.ts";
 import {useEffect, useState} from "react";
 import type {Rank} from "../types.ts";
 import type {Color, Move} from "chess.js";
@@ -9,11 +9,11 @@ import type {Color, Move} from "chess.js";
 interface FreeplayGameProps {
     line: string;
     color: Color;
-    difficulty: Rank;
-    handleEndGame: (reason: "checkmate" | "stalemate" | "draw", pgn: string) => void;
+    rank: Rank;
+    handleEndGame: (reason: "checkmate" | "stalemate" | "draw" | "resign", pgn: string) => void;
 }
 
-function FreeplayGame({line, color, difficulty, handleEndGame}: FreeplayGameProps) {
+function FreeplayGame({line, color, rank, handleEndGame}: FreeplayGameProps) {
     const stockfish = useStockfish();
     const [engineMove, setEngineMove] = useState<MovePayload>();
 
@@ -25,17 +25,17 @@ function FreeplayGame({line, color, difficulty, handleEndGame}: FreeplayGameProp
         if (stockfish) {
             // aggiorna stockfish
             stockfish.startNewGame();
-            stockfish.setElo(difficulty.elo);
+            stockfish.setElo(rank.elo);
         }
     }, [stockfish]);
 
-    const handlePlayerMove = (move: Move, fen: string) => {
+    const handlePlayerMove = (fen: string, move: Move | undefined) => {
         if (inTheory && counter < lineMoves.length-2) {
             console.log("move: " + lineMoves[counter+3]);
             setCounter(counter + 2);
             const tmove = getCurrentMove(lineMoves[counter+1]);
 
-            if (move.from === tmove.from && move.to === tmove.to) {
+            if (move!.from === tmove.from && move!.to === tmove.to) {
                 setEngineMove(getCurrentMove(lineMoves[counter+2]));
                 return;
             } else {
@@ -48,7 +48,7 @@ function FreeplayGame({line, color, difficulty, handleEndGame}: FreeplayGameProp
         requestEngineMove({
             engine: stockfish,
             fen,
-            depth: (difficulty) ? difficulty.depth : 15,
+            depth: rank.depth ?? 15,
             onMove: setEngineMove,
         });
     };

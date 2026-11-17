@@ -1,4 +1,4 @@
-import { useStockfish } from "../hooks/useStockfish.ts";
+import { useStockfish } from "../services/useStockfish.ts";
 import { useEffect, useState } from "react";
 
 function StockfishIsReady() {

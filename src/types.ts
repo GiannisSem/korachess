@@ -14,7 +14,6 @@ export interface Rank {
 }
 
 export interface Match {
-    gameIndex: number;        // 1 a 6
     playerColor: 'w' | 'b';
     result: 1 | 0.5 | 0;      // W, Draw, L
     pgn: string;

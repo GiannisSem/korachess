@@ -1,33 +1,131 @@
-import {ChessBoard, type MovePayload} from "../components/ChessBoard";
+import {blitz, getRank, lastV, rapid} from "../services/utils.ts";
+import ResultGrid from "../components/ResultGrid.tsx";
+import type {Level, Match, Rank} from "../types.ts";
 import {useState} from "react";
-import {useStockfish} from "../hooks/useStockfish.ts";
-import {requestEngineMove} from "../services/chessUtils.ts";
-import {getTheme} from "../services/utils.ts";
+import RankedGame from "../components/RankedGame.tsx";
+import Button from "../components/Button.tsx";
+import type {Color} from "chess.js";
+
+const modeTime = {
+    blitz: 300000,
+    rapid: 600000
+}
+
+type Mode = "" | "blitz" | "rapid";
 
 function RankedMode() {
-    const stockfish = useStockfish();
-    const [engineMove, setEngineMove] = useState<MovePayload>();
 
-    const handlePlayerMove = (fen: string) => {
-        requestEngineMove({
-            engine: stockfish,
-            fen,
-            depth: 15,
-            onMove: setEngineMove,
-        });
-    };
+    const rapidRaw: Level = rapid();
+    const blitzRaw: Level = blitz();
+
+    const [mode, setMode] = useState<Mode>("");
+    const [onGame, setOnGame] = useState(false);
+    const [color, setColor] = useState<Color | undefined>(undefined);
+
+    const startGame = (mode: Mode) => {
+        setMode(mode);
+        const raw = mode == "blitz" ? blitzRaw : rapidRaw;
+        // color -> se vuoto random, se presente, contrario precedente.
+        if (raw.matches.length == 0) {
+            setColor(Math.random() < 0.5 ? "w" : "b")
+        } else {
+            setColor(raw.matches[raw.matches.length - 1].playerColor == "w" ? "b" : "w");
+        }
+
+        setOnGame(true);
+    }
+
+    const handleFirstMove = () => {
+        const moves = ["e2e4", "d2d4", "g1f3"];
+        return moves[Math.floor(Math.random() * moves.length)];
+    }
+
+    const handleEndGame = (reason: "checkmate" | "stalemate" | "draw" | "resign", pgn: string) => {
+        console.log(reason);
+        const raw = mode == "blitz" ? blitzRaw : rapidRaw;
+
+        let result: any;
+        if (reason === "resign") {
+            result = 0;
+        } else if (pgn.includes("[Result \"1-0\"]"))
+            result = color == "w" ? 1 : 0;
+        else if (pgn.includes("[Result \"0-1\"]"))
+            result = color == "w" ? 0 : 1;
+        else result = 0.5;
+
+        const match: Match = {
+            playerColor: color!,
+            result: result,
+            pgn: pgn
+        }
+
+        raw.matches.push(match);
+
+        if (raw.matches.length < 6){
+            localStorage.setItem(mode, JSON.stringify(raw));
+        } else {
+            // lunghezza = 6 quindi calcola il rank
+            let tot = 0;
+            const rank: Rank = getRank(raw.rank);
+
+            raw.matches.forEach((m: Match) => {
+                tot += m.result;
+            })
+
+            let level: Level;
+            if (tot < rank.rankDownScore){
+                level = { matches: [], rank: getRank(rank.id-1).name }
+            } else if(tot > rank.rankUpScore){
+                level = { matches: [], rank: getRank(rank.id+1).name }
+            } else {
+                level = { matches: [], rank: rank.name }
+            }
+            localStorage.setItem(mode, JSON.stringify(level));
+        }
+
+        // salva nei last 5
+        let list = lastV();
+
+        if (list.length == 5) {
+            let temp = []
+            for (let i = 1; i < list.length; i++) {
+                temp.push(list[i]);
+            }
+            list = temp;
+        }
+        list.push(match);
+
+        localStorage.setItem("lastV", JSON.stringify(list));
+    }
 
     return (
-        <div className="board-stage">
-            <ChessBoard
-                onEndGame={(reason) => console.log('Game ended:', reason)}
-                theme={getTheme(localStorage.getItem("theme") ?? "classic")}
-                reversed={false}
-                playerColor="w"
-                onMove={handlePlayerMove}
-                engineMove={engineMove}
-            />
-        </div>
+        <>
+            { !onGame && (
+                <div>
+                    <h2>Blitz ({modeTime.blitz / 60000}+0)</h2>
+                    <h3>{blitzRaw.rank}</h3>
+                    <ResultGrid list={blitzRaw.matches} n={6} />
+                    <Button content="New blitz game" onClick={() => startGame("blitz")} />
+
+                    <h2>Rapid ({modeTime.rapid / 60000}+0)</h2>
+                    <h3>{rapidRaw.rank}</h3>
+                    <ResultGrid list={rapidRaw.matches} n={6} />
+                    <Button content="New rapid game" onClick={() => startGame("blitz")} />
+                </div>
+            )}
+
+            {
+                onGame && (
+                    <RankedGame color={color!}
+                                firstMove={color == "b" ? handleFirstMove() : ""}
+                                rank={getRank(mode == "blitz" ? blitzRaw.rank : rapidRaw.rank)}
+                                time={mode == "blitz" ? modeTime.blitz : modeTime.rapid}
+                                increment={3000}
+                                handleEndGame={handleEndGame}
+                    />
+                )
+            }
+        </>
     )
 }
 

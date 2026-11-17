@@ -11,7 +11,7 @@ import FreeplayGame from "../components/FreeplayGame.tsx";
 
 function FreeplayMode() {
     const [color, setColor] = useState<Color | undefined>(undefined);
-    const [difficulty, setDifficulty] = useState<Rank | null>(null);
+    const [rank, setrank] = useState<Rank | null>(null);
     const [opening, setOpening] = useState<string>("");
     const [line, setLine] = useState<string[]>([]);
     const [started, setStarted] = useState(false);
@@ -24,7 +24,7 @@ function FreeplayMode() {
 
     // filtra per colore le aperture da scegliere
     const handleStart = () => {
-        if (!difficulty) return;
+        if (!rank) return;
 
         const chosenColor = color ?? (Math.random() < 0.5 ? "w" : "b");
         setColor(chosenColor);
@@ -62,7 +62,7 @@ function FreeplayMode() {
 
     const handleReset = () => {
         setColor(undefined);
-        setDifficulty(null);
+        setrank(null);
         setOpening("");
         setLine([]);
         setGameEnded("");
@@ -93,7 +93,7 @@ function FreeplayMode() {
                         <br />
                         <Selector firstRowText="Select a rank"
                                   elements={ranks.map((rank) => rank.name)}
-                                  onClick={setDifficulty} />
+                                  onClick={setrank} />
                         <br />
                         <Button content={"Inizia partita"} onClick={handleStart} />
                     </>
@@ -104,7 +104,7 @@ function FreeplayMode() {
                 started && (
                     <FreeplayGame line={line[1]}
                                   color={color!}
-                                  difficulty={difficulty ?? ranks[0]}
+                                  rank={rank ?? ranks[0]}
                                   handleEndGame={handleEndGame}
                     />
                 )

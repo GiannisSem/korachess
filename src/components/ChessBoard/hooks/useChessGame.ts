@@ -10,6 +10,7 @@ export function useChessGame({
                                  onMove,
                                  onEndGame,
                                  viewOnly = false,
+                                 resign = false,
                              }: ChessBoardProps) {
     const chessRef = useRef(new Chess(initialFen));
     const [fen, setFen] = useState(initialFen);
@@ -28,6 +29,13 @@ export function useChessGame({
             setViewOnly(true);
         }
     }, [onEndGame]);
+
+    useEffect(() => {
+        if (resign && onEndGame) {
+            onEndGame("resign", chessRef.current.pgn());
+            setViewOnly(true);
+        }
+    }, [resign])
 
     useEffect(() => {
         setViewOnly(viewOnly);
@@ -65,7 +73,7 @@ export function useChessGame({
                 setSelectedSquare(null);
                 setLegalMoves([]);
 
-                if (onMove?.(res, game.fen()) === false) {
+                if (onMove?.(game.fen(), res) === false) {
                     game.undo();
                     setFen(game.fen());
                     const history = game.history({ verbose: true });

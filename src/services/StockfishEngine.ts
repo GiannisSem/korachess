@@ -45,8 +45,15 @@ export class StockfishEngine {
     }
 
     public setElo(elo: number): void {
-        this.sendCommand("setoption name UCI_LimitStrength value true")
-        this.sendCommand(`setoption name UCI_Elo value ${elo}`)
+        if (elo < 1320) {
+            // No NNUE for lower ranks
+            this.sendCommand("setoption name Use NNUE value false");
+            this.sendCommand("setoption name UCI_LimitStrength value false");
+        } else {
+            this.sendCommand("setoption name Use NNUE value true");
+            this.sendCommand("setoption name UCI_LimitStrength value true");
+            this.sendCommand(`setoption name UCI_Elo value ${elo}`);
+        }
     }
 
     public calculateBestMove(fen: string, depth = 15, onMove: (move: string) => void): void {
