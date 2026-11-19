@@ -22,6 +22,8 @@ function RankedMode() {
     const [onGame, setOnGame] = useState(false);
     const [color, setColor] = useState<Color | undefined>(undefined);
 
+    const increment = 3000;
+
     const startGame = (mode: Mode) => {
         setMode(mode);
         const raw = mode == "blitz" ? blitzRaw : rapidRaw;
@@ -102,12 +104,12 @@ function RankedMode() {
         <>
             { !onGame && (
                 <div>
-                    <h2>Blitz ({modeTime.blitz / 60000}+0)</h2>
+                    <h2>Blitz ({modeTime.blitz / 60000}+{increment / 1000})</h2>
                     <h3>{blitzRaw.rank}</h3>
                     <ResultGrid list={blitzRaw.matches} n={6} />
                     <Button content="New blitz game" onClick={() => startGame("blitz")} />
 
-                    <h2>Rapid ({modeTime.rapid / 60000}+0)</h2>
+                    <h2>Rapid ({modeTime.rapid / 60000}+{increment / 1000})</h2>
                     <h3>{rapidRaw.rank}</h3>
                     <ResultGrid list={rapidRaw.matches} n={6} />
                     <Button content="New rapid game" onClick={() => startGame("blitz")} />
@@ -120,7 +122,7 @@ function RankedMode() {
                                 firstMove={color == "b" ? handleFirstMove() : ""}
                                 rank={getRank(mode == "blitz" ? blitzRaw.rank : rapidRaw.rank)}
                                 time={mode == "blitz" ? modeTime.blitz : modeTime.rapid}
-                                increment={3000}
+                                increment={increment}
                                 handleEndGame={handleEndGame}
                     />
                 )
