@@ -19,6 +19,7 @@ export function useChessGame({
     const [legalMoves, setLegalMoves] = useState<Move[]>([]);
     const [lastMove, setLastMove] = useState<{ from: Square; to: Square } | null>(null);
     const [pendingPromotion, setPendingPromotion] = useState<PendingPromotion | null>(null);
+    const lastEngineMoveRef = useRef<ChessBoardProps['engineMove']>(undefined);
 
     const checkGameEnd = useCallback(() => {
         const game = chessRef.current;
@@ -50,7 +51,9 @@ export function useChessGame({
 
     // Gestione mossa in ingresso da Stockfish
     useEffect(() => {
-        if (!engineMove) return;
+        if (!engineMove || lastEngineMoveRef.current === engineMove) return;
+        lastEngineMoveRef.current = engineMove;
+
         try {
             const res = chessRef.current.move(engineMove);
             if (res) {
