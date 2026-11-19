@@ -11,7 +11,7 @@ import FreeplayGame from "../components/FreeplayGame.tsx";
 
 function FreeplayMode() {
     const [color, setColor] = useState<Color | undefined>(undefined);
-    const [rank, setrank] = useState<Rank | null>(null);
+    const [rank, setRank] = useState<Rank | null>(null);
     const [opening, setOpening] = useState<string>("");
     const [line, setLine] = useState<string[]>([]);
     const [started, setStarted] = useState(false);
@@ -20,6 +20,10 @@ function FreeplayMode() {
 
     const handleLine = (line: string) => {
         setLine(openings.find((op) => op.opening === opening)!.lines.find((li) => li[0] === line)!);
+    }
+
+    const handleRank = (name: string) => {
+        setRank(ranks.find((r: Rank) => r.name === name)!);
     }
 
     // filtra per colore le aperture da scegliere
@@ -55,14 +59,14 @@ function FreeplayMode() {
         setStarted(true);
     }
 
-    const handleEndGame = async (reason: "checkmate" | "stalemate" | "draw", pgn: string) => {
+    const handleEndGame = async (reason: "checkmate" | "stalemate" | "draw" | "resign", pgn: string) => {
         setGameEnded(reason);
         await navigator.clipboard.writeText(pgn);
     }
 
     const handleReset = () => {
         setColor(undefined);
-        setrank(null);
+        setRank(null);
         setOpening("");
         setLine([]);
         setGameEnded("");
@@ -80,7 +84,7 @@ function FreeplayMode() {
                                   elements={color
                                       ? openings.filter((op) => op.color === color).map((op) => op.opening)
                                       : openings.map((op) => op.opening)
-                                    }
+                                  }
                                   onClick={setOpening}
                         />
                         { opening && (
@@ -93,7 +97,7 @@ function FreeplayMode() {
                         <br />
                         <Selector firstRowText="Select a rank"
                                   elements={ranks.map((rank) => rank.name)}
-                                  onClick={setrank} />
+                                  onClick={handleRank} />
                         <br />
                         <Button content={"Inizia partita"} onClick={handleStart} />
                     </>
@@ -102,11 +106,14 @@ function FreeplayMode() {
 
             {
                 started && (
-                    <FreeplayGame line={line[1]}
-                                  color={color!}
-                                  rank={rank ?? ranks[0]}
-                                  handleEndGame={handleEndGame}
-                    />
+                    <>
+                        <FreeplayGame line={line[1]}
+                                      color={color!}
+                                      rank={rank!}
+                                      handleEndGame={handleEndGame}
+                        />
+                        <Button content={"Back"} onClick={() => setStarted(false)} />
+                    </>
                 )
             }
 
