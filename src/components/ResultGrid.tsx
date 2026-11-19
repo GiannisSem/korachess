@@ -14,7 +14,7 @@ function ResultGrid({list, n}: ResultGridProps) {
                     {item.result} color: {item.playerColor}
                 </div>
             ))}
-            {list.length < 5 && (
+            {list.length < n && (
                 <>
                     {Array.from({ length: n-list.length }, (_, index) => (
                         <div key={index} className={`result-box result-none`}>
