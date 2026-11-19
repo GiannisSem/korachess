@@ -15,7 +15,6 @@ const modeTime = {
 type Mode = "" | "blitz" | "rapid";
 
 function RankedMode() {
-
     const rapidRaw: Level = rapid();
     const blitzRaw: Level = blitz();
 
@@ -43,7 +42,7 @@ function RankedMode() {
         return moves[Math.floor(Math.random() * moves.length)];
     }
 
-    const handleEndGame = (reason: GameEndReason, pgn: string) => {
+    const handleEndGame = async (reason: GameEndReason, pgn: string) => {
         const raw = mode == "blitz" ? blitzRaw : rapidRaw;
 
         let result: 0 | 1 | 0.5;
@@ -100,6 +99,7 @@ function RankedMode() {
         list.push(match);
 
         localStorage.setItem("lastV", JSON.stringify(list));
+        await navigator.clipboard.writeText(pgn);
     }
 
     return (
@@ -125,6 +125,16 @@ function RankedMode() {
                                 rank={getRank(mode == "blitz" ? blitzRaw.rank : rapidRaw.rank)}
                                 time={mode == "blitz" ? modeTime.blitz : modeTime.rapid}
                                 increment={increment}
+                                pgnHeaders={{
+                                    Event: "Ranked",
+                                    Site: "koraChess",
+                                    White: color === "w"
+                                        ? localStorage.getItem("username") || "User"
+                                        : getRank(mode == "blitz" ? blitzRaw.rank : rapidRaw.rank).name,
+                                    Black: color === "b"
+                                        ? localStorage.getItem("username") || "User"
+                                        : getRank(mode == "blitz" ? blitzRaw.rank : rapidRaw.rank).name,
+                                }}
                                 handleEndGame={handleEndGame}
                                 onEnd={() => setOnGame(false)}
                     />

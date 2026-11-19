@@ -111,6 +111,16 @@ function FreeplayMode() {
                         <FreeplayGame line={line[1]}
                                       color={color!}
                                       rank={rank!}
+                                      pgnHeaders={{
+                                          Event: "Freeplay",
+                                          Site: "koraChess",
+                                          White: color === "w"
+                                              ? localStorage.getItem("username") || "User"
+                                              : rank!.name,
+                                          Black: color === "b"
+                                              ? localStorage.getItem("username") || "User"
+                                              : rank!.name,
+                                      }}
                                       handleEndGame={handleEndGame}
                         />
                         <Button content={"Back"} onClick={() => setStarted(false)} />

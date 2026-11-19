@@ -5,6 +5,7 @@ import {STARTING_FEN} from "../../../services/chessUtils.ts";
 
 export function useChessGame({
                                  initialFen = STARTING_FEN,
+                                 pgnHeaders,
                                  playerColor,
                                  engineMove,
                                  onMove,
@@ -22,6 +23,23 @@ export function useChessGame({
     const lastEngineMoveRef = useRef<ChessBoardProps['engineMove']>(undefined);
     const gameEndReportedRef = useRef(false);
 
+    const createPgn = useCallback((result: string) => {
+        const game = chessRef.current;
+        const today = new Date();
+        const date = [
+            today.getFullYear().toString().padStart(4, '0'),
+            (today.getMonth() + 1).toString().padStart(2, '0'),
+            today.getDate().toString().padStart(2, '0'),
+        ].join('.');
+
+        game.setHeader('Date', date);
+        for (const [key, value] of Object.entries(pgnHeaders ?? {})) {
+            if (value) game.setHeader(key, value);
+        }
+        game.setHeader('Result', result);
+        return game.pgn();
+    }, [pgnHeaders]);
+
     const checkGameEnd = useCallback(() => {
         const game = chessRef.current;
         if (gameEndReportedRef.current || !game.isGameOver() || !onEndGame) return;
@@ -37,22 +55,19 @@ export function useChessGame({
             result = '1/2-1/2';
         }
 
-        game.setHeader('Result', result);
         gameEndReportedRef.current = true;
-        onEndGame(reason, game.pgn());
+        onEndGame(reason, createPgn(result));
         setViewOnly(true);
-    }, [onEndGame]);
+    }, [createPgn, onEndGame]);
 
     useEffect(() => {
         if (resign && onEndGame && !gameEndReportedRef.current) {
-            const game = chessRef.current;
             const result = playerColor === 'w' ? '0-1' : playerColor === 'b' ? '1-0' : '*';
-            game.setHeader('Result', result);
             gameEndReportedRef.current = true;
-            onEndGame('resign', game.pgn());
+            onEndGame('resign', createPgn(result));
             setViewOnly(true);
         }
-    }, [resign, playerColor, onEndGame])
+    }, [resign, playerColor, onEndGame, createPgn])
 
     useEffect(() => {
         setViewOnly(viewOnly);

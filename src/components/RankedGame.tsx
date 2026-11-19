@@ -7,7 +7,7 @@ import type {Rank} from "../types.ts";
 import type {Color} from "chess.js";
 import {Timer} from "./Timer.tsx";
 import Button from "./Button.tsx";
-import type {GameEndReason} from "./ChessBoard/types.ts";
+import type {GameEndReason, PgnHeaders} from "./ChessBoard/types.ts";
 
 interface RankedGameProps {
     color: Color;
@@ -15,11 +15,12 @@ interface RankedGameProps {
     rank: Rank;
     time: number,
     increment: number
+    pgnHeaders: PgnHeaders;
     handleEndGame: (reason: GameEndReason, pgn: string) => void;
     onEnd: () => void;
 }
 
-function RankedGame({color, firstMove, rank, time, increment, handleEndGame, onEnd}: RankedGameProps) {
+function RankedGame({color, firstMove, rank, time, increment, pgnHeaders, handleEndGame, onEnd}: RankedGameProps) {
     const stockfish = useStockfish();
     const [engineMove, setEngineMove] = useState<MovePayload>();
 
@@ -61,6 +62,7 @@ function RankedGame({color, firstMove, rank, time, increment, handleEndGame, onE
         <div className="board-stage">
             <ChessBoard
                 initialFen={getFirstFen((color === "w") ? "start" : firstMove)}
+                pgnHeaders={pgnHeaders}
                 onEndGame={handleEnd}
                 theme={getTheme(localStorage.getItem("theme") ?? "classic")}
                 playerColor={color}

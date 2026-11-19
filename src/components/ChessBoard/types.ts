@@ -30,8 +30,11 @@ export interface PendingPromotion {
 
 export type GameEndReason = 'w_checkmate' | 'b_checkmate' | 'stalemate' | 'draw' | 'resign';
 
+export type PgnHeaders = Partial<Record<'Event' | 'Site' | 'White' | 'Black', string>>;
+
 export interface ChessBoardProps {
     initialFen?: string;
+    pgnHeaders?: PgnHeaders;
     playerColor?: PieceColor;
     engineMove?: { from: Square; to: Square; promotion?: PieceSymbol };
     engineArrows?: ArrowData[];
