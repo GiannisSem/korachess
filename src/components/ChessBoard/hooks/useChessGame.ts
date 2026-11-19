@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { Chess, type Square, Move } from 'chess.js';
-import type {ChessBoardProps, PendingPromotion} from '../types';
+import type {ChessBoardProps, GameEndReason, PendingPromotion} from '../types';
 import {STARTING_FEN} from "../../../services/chessUtils.ts";
 
 export function useChessGame({
@@ -20,23 +20,39 @@ export function useChessGame({
     const [lastMove, setLastMove] = useState<{ from: Square; to: Square } | null>(null);
     const [pendingPromotion, setPendingPromotion] = useState<PendingPromotion | null>(null);
     const lastEngineMoveRef = useRef<ChessBoardProps['engineMove']>(undefined);
+    const gameEndReportedRef = useRef(false);
 
     const checkGameEnd = useCallback(() => {
         const game = chessRef.current;
-        if (game.isGameOver() && onEndGame) {
-            if (game.isCheckmate()) onEndGame('checkmate', chessRef.current.pgn());
-            else if (game.isStalemate()) onEndGame('stalemate', chessRef.current.pgn());
-            else if (game.isDraw()) onEndGame('draw', chessRef.current.pgn());
-            setViewOnly(true);
+        if (gameEndReportedRef.current || !game.isGameOver() || !onEndGame) return;
+
+        let reason: GameEndReason;
+        let result: string;
+        if (game.isCheckmate()) {
+            const winner = game.turn() === 'w' ? 'b' : 'w';
+            reason = `${winner}_checkmate`;
+            result = winner === 'w' ? '1-0' : '0-1';
+        } else {
+            reason = game.isStalemate() ? 'stalemate' : 'draw';
+            result = '1/2-1/2';
         }
+
+        game.setHeader('Result', result);
+        gameEndReportedRef.current = true;
+        onEndGame(reason, game.pgn());
+        setViewOnly(true);
     }, [onEndGame]);
 
     useEffect(() => {
-        if (resign && onEndGame) {
-            onEndGame("resign", chessRef.current.pgn());
+        if (resign && onEndGame && !gameEndReportedRef.current) {
+            const game = chessRef.current;
+            const result = playerColor === 'w' ? '0-1' : playerColor === 'b' ? '1-0' : '*';
+            game.setHeader('Result', result);
+            gameEndReportedRef.current = true;
+            onEndGame('resign', game.pgn());
             setViewOnly(true);
         }
-    }, [resign])
+    }, [resign, playerColor, onEndGame])
 
     useEffect(() => {
         setViewOnly(viewOnly);

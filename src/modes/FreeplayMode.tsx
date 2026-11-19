@@ -8,6 +8,7 @@ import Selector from "../components/Selector.tsx";
 import ranks from "../assets/ranks.json";
 import openings from "../assets/openings.json";
 import FreeplayGame from "../components/FreeplayGame.tsx";
+import type {GameEndReason} from "../components/ChessBoard/types.ts";
 
 function FreeplayMode() {
     const [color, setColor] = useState<Color | undefined>(undefined);
@@ -59,7 +60,7 @@ function FreeplayMode() {
         setStarted(true);
     }
 
-    const handleEndGame = async (reason: "checkmate" | "stalemate" | "draw" | "resign", pgn: string) => {
+    const handleEndGame = async (reason: GameEndReason, pgn: string) => {
         setGameEnded(reason);
         await navigator.clipboard.writeText(pgn);
     }

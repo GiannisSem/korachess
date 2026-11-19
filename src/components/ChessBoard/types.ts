@@ -28,6 +28,8 @@ export interface PendingPromotion {
     color: PieceColor;
 }
 
+export type GameEndReason = 'w_checkmate' | 'b_checkmate' | 'stalemate' | 'draw' | 'resign';
+
 export interface ChessBoardProps {
     initialFen?: string;
     playerColor?: PieceColor;
@@ -36,7 +38,7 @@ export interface ChessBoardProps {
     reversed?: boolean;
     theme?: BoardTheme;
     onMove?: (fen: string, res?: Move) => boolean | void;
-    onEndGame?: (reason: 'checkmate' | 'stalemate' | 'draw' | "resign", pgn: string) => void;
+    onEndGame?: (reason: GameEndReason, pgn: string) => void;
     viewOnly?: boolean;
     resign?: boolean;
 }

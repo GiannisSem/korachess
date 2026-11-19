@@ -5,12 +5,13 @@ import {useStockfish} from "../services/useStockfish.ts";
 import {useEffect, useState} from "react";
 import type {Rank} from "../types.ts";
 import type {Color, Move} from "chess.js";
+import type {GameEndReason} from "./ChessBoard/types.ts";
 
 interface FreeplayGameProps {
     line: string;
     color: Color;
     rank: Rank;
-    handleEndGame: (reason: "checkmate" | "stalemate" | "draw" | "resign", pgn: string) => void;
+    handleEndGame: (reason: GameEndReason, pgn: string) => void;
 }
 
 function FreeplayGame({line, color, rank, handleEndGame}: FreeplayGameProps) {
@@ -48,7 +49,7 @@ function FreeplayGame({line, color, rank, handleEndGame}: FreeplayGameProps) {
         requestEngineMove({
             engine: stockfish,
             fen,
-            depth: rank.depth ?? 15,
+            depth: rank.depth,
             onMove: setEngineMove,
         });
     };

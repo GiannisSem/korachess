@@ -5,6 +5,7 @@ import {useState} from "react";
 import RankedGame from "../components/RankedGame.tsx";
 import Button from "../components/Button.tsx";
 import type {Color} from "chess.js";
+import type {GameEndReason} from "../components/ChessBoard";
 
 const modeTime = {
     blitz: 300000,
@@ -42,18 +43,19 @@ function RankedMode() {
         return moves[Math.floor(Math.random() * moves.length)];
     }
 
-    const handleEndGame = (reason: "checkmate" | "stalemate" | "draw" | "resign", pgn: string) => {
-        console.log(reason);
+    const handleEndGame = (reason: GameEndReason, pgn: string) => {
         const raw = mode == "blitz" ? blitzRaw : rapidRaw;
 
-        let result: any;
+        let result: 0 | 1 | 0.5;
         if (reason === "resign") {
             result = 0;
-        } else if (pgn.includes("[Result \"1-0\"]"))
-            result = color == "w" ? 1 : 0;
-        else if (pgn.includes("[Result \"0-1\"]"))
-            result = color == "w" ? 0 : 1;
-        else result = 0.5;
+        } else if (reason === "w_checkmate") {
+            result = color === "w" ? 1 : 0;
+        } else if (reason === "b_checkmate") {
+            result = color === "b" ? 1 : 0;
+        } else {
+            result = 0.5;
+        }
 
         const match: Match = {
             playerColor: color!,
@@ -124,6 +126,7 @@ function RankedMode() {
                                 time={mode == "blitz" ? modeTime.blitz : modeTime.rapid}
                                 increment={increment}
                                 handleEndGame={handleEndGame}
+                                onEnd={() => setOnGame(false)}
                     />
                 )
             }

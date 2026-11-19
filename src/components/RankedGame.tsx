@@ -7,6 +7,7 @@ import type {Rank} from "../types.ts";
 import type {Color} from "chess.js";
 import {Timer} from "./Timer.tsx";
 import Button from "./Button.tsx";
+import type {GameEndReason} from "./ChessBoard/types.ts";
 
 interface RankedGameProps {
     color: Color;
@@ -14,10 +15,11 @@ interface RankedGameProps {
     rank: Rank;
     time: number,
     increment: number
-    handleEndGame: (reason: "checkmate" | "stalemate" | "draw" | "resign", pgn: string) => void;
+    handleEndGame: (reason: GameEndReason, pgn: string) => void;
+    onEnd: () => void;
 }
 
-function RankedGame({color, firstMove, rank, time, increment, handleEndGame}: RankedGameProps) {
+function RankedGame({color, firstMove, rank, time, increment, handleEndGame, onEnd}: RankedGameProps) {
     const stockfish = useStockfish();
     const [engineMove, setEngineMove] = useState<MovePayload>();
 
@@ -43,13 +45,13 @@ function RankedGame({color, firstMove, rank, time, increment, handleEndGame}: Ra
         requestEngineMove({
             engine: stockfish,
             fen,
-            depth: rank.depth ?? 15,
+            depth: rank.depth,
             onMove: handleBotMove,
         });
     };
 
     const [end, setEnd] = useState(false);
-    const handleEnd = (reason: ("checkmate" | "stalemate" | "draw" | "resign"), pgn: string) => {
+    const handleEnd = (reason: GameEndReason, pgn: string) => {
         setYourTurn(false);
         handleEndGame(reason, pgn);
         setEnd(true);
@@ -69,6 +71,7 @@ function RankedGame({color, firstMove, rank, time, increment, handleEndGame}: Ra
             />
             <Timer startTime={time} active={yourTurn} increment={increment} onEnd={() => setResign(true)} />
             { !end && <Button content={"Resign"} onClick={() => setResign(true)} /> }
+            { end && <Button content={"Back"} onClick={onEnd} /> }
         </div>
     )
 }
