@@ -9,6 +9,7 @@ import RankedMode from "./modes/RankedMode.tsx";
 import FreeplayMode from "./modes/FreeplayMode.tsx";
 import OpeningsMode from "./modes/OpeningsMode.tsx";
 import SettingsMode from "./modes/SettingsMode.tsx";
+import { Analytics } from "@vercel/analytics/react"
 
 const MODE_CONTENT: Record<string, { eyebrow: string; title: string; description: string }> = {
     ranked: {
@@ -48,6 +49,7 @@ function App() {
 
     return (
         <div className="app-shell">
+            <Analytics />
             <header className="app-header">
                 <div className="brand">
                     <span className="brand-mark" aria-hidden="true">🐾</span>
