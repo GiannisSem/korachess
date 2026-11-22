@@ -23,8 +23,8 @@ export default function ColorPicker({ onClick }: ColorSelectorProps) {
                 onClick={() => handleSelect("w")}
                 style={{
                     ...buttonStyle,
-                    borderColor: selectedColor === "w" ? "#3b82f6" : "#374151",
-                    backgroundColor: selectedColor === "w" ? "#1e293b" : "#111827",
+                    borderColor: selectedColor === "w" ? "#688b6b" : "#d8ded5",
+                    backgroundColor: selectedColor === "w" ? "#e5ede3" : "#fbfcfa",
                 }}
                 title="Play as white"
             >
@@ -37,8 +37,8 @@ export default function ColorPicker({ onClick }: ColorSelectorProps) {
                 onClick={() => handleSelect(undefined)}
                 style={{
                     ...buttonStyle,
-                    borderColor: selectedColor === undefined ? "#3b82f6" : "#374151",
-                    backgroundColor: selectedColor === undefined ? "#1e293b" : "#111827",
+                    borderColor: selectedColor === undefined ? "#688b6b" : "#d8ded5",
+                    backgroundColor: selectedColor === undefined ? "#e5ede3" : "#fbfcfa",
                 }}
                 title="Random color"
             >
@@ -54,8 +54,8 @@ export default function ColorPicker({ onClick }: ColorSelectorProps) {
                 onClick={() => handleSelect("b")}
                 style={{
                     ...buttonStyle,
-                    borderColor: selectedColor === "b" ? "#3b82f6" : "#374151",
-                    backgroundColor: selectedColor === "b" ? "#1e293b" : "#111827",
+                    borderColor: selectedColor === "b" ? "#688b6b" : "#d8ded5",
+                    backgroundColor: selectedColor === "b" ? "#e5ede3" : "#fbfcfa",
                 }}
                 title="Play as black"
             >
@@ -70,9 +70,9 @@ const containerStyle: React.CSSProperties = {
     display: "inline-flex",
     gap: "10px",
     padding: "6px",
-    backgroundColor: "#0f172a",
+    backgroundColor: "#f5f6f2",
     borderRadius: "12px",
-    border: "1px solid #1e293b",
+    border: "1px solid #e4e8e1",
 };
 
 const buttonStyle: React.CSSProperties = {

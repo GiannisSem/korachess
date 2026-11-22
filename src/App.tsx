@@ -13,13 +13,13 @@ import SettingsMode from "./modes/SettingsMode.tsx";
 const MODE_CONTENT: Record<string, { eyebrow: string; title: string; description: string }> = {
     ranked: {
         eyebrow: "Game",
-        title: "Play against Stockfish",
+        title: "Play against Kora",
         description: "Ranked game",
     },
     free: {
         eyebrow: "Casual game",
         title: "Freeplay",
-        description: "Play a casual game against Stockfish.",
+        description: "Play a casual game against Kora.",
     },
     openings: {
         eyebrow: "Repertoire",
@@ -50,7 +50,7 @@ function App() {
         <div className="app-shell">
             <header className="app-header">
                 <div className="brand">
-                    <span className="brand-mark" aria-hidden="true">♞</span>
+                    <span className="brand-mark" aria-hidden="true">🐾</span>
                     <h1>KoraChess</h1>
                 </div>
                 <StockfishIsReady />

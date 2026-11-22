@@ -11,7 +11,7 @@ function ResultGrid({list, n}: ResultGridProps) {
         <div className="results-grid">
             {list.map((item: Match, index: number) => (
                 <div key={index} className={`result-box result-${item.result}`} onClick={async () => await navigator.clipboard.writeText(item.pgn)}>
-                    {item.result} color: {item.playerColor}
+                    {item.playerColor === "w" ? "White" : "Black"}
                 </div>
             ))}
             {list.length < n && (

@@ -57,10 +57,10 @@ export default function Selector({ firstRowText, elements, onClick }: SelectorPr
                                 onClick={() => handleSelect(null)}
                                 style={{
                                     ...itemStyle,
-                                    backgroundColor: selected === null ? "#2563eb" : "transparent",
+                                    backgroundColor: selected === null ? "#e5ede3" : "transparent",
                                     fontWeight: selected === null ? 600 : 400,
                                     fontStyle: "italic",
-                                    color: "#9ca3af",
+                                    color: selected === null ? "#34583b" : "#718074",
                                 }}
                             >
                                 <span>{firstRowText}</span>
@@ -78,8 +78,9 @@ export default function Selector({ firstRowText, elements, onClick }: SelectorPr
                                 onClick={() => handleSelect(item)}
                                 style={{
                                     ...itemStyle,
-                                    backgroundColor: isSelected ? "#2563eb" : "transparent",
+                                    backgroundColor: isSelected ? "#e5ede3" : "transparent",
                                     fontWeight: isSelected ? 600 : 400,
+                                    color: isSelected ? "#34583b" : "#536057",
                                 }}
                             >
                                 <span>{item}</span>
