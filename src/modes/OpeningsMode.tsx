@@ -42,9 +42,9 @@ function OpeningsMode() {
         }
     }
 
-    const handlePlayerMove = (move: Move): boolean => {
+    const handlePlayerMove = (_fen: string, move?: Move): boolean => {
         const expectedMove = lineMoves[counter + 1];
-        if (!expectedMove) return false;
+        if (!expectedMove || !move) return false;
 
         const targetMove = getCurrentMove(expectedMove);
         if (move.from !== targetMove.from || move.to !== targetMove.to) {
@@ -83,9 +83,6 @@ function OpeningsMode() {
                     </>
                 ) : (
                     <div className="openings-course">
-                        { /* Impara il corso */ }
-                        { /* line[0] e [1] per nome e linea */ }
-                        { /* Implementare Learn e Repeat */}
                         <h1>{course.opening + " -> " + course.lines[lineIndex][0] }</h1>
 
                         <div className="board-stage">
