@@ -8,7 +8,7 @@ import Selector from "../components/Selector.tsx";
 import ranks from "../assets/ranks.json";
 import openings from "../assets/openings.json";
 import FreeplayGame from "../components/FreeplayGame.tsx";
-import type {GameEndReason} from "../components/ChessBoard/types.ts";
+import type {GameEndReason} from "../components/ChessBoard";
 
 function FreeplayMode() {
     const [color, setColor] = useState<Color | undefined>(undefined);
@@ -55,8 +55,6 @@ function FreeplayMode() {
 
         setOpening(o);
         setLine(l);
-        console.log("start");
-        console.log(l);
         setStarted(true);
     }
 
@@ -123,7 +121,7 @@ function FreeplayMode() {
                                       }}
                                       handleEndGame={handleEndGame}
                         />
-                        <Button content={"Back"} onClick={() => setStarted(false)} />
+                        { gameEnded == "" && <Button content={"Back"} onClick={() => setStarted(false)} />}
                     </>
                 )
             }

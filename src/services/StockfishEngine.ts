@@ -7,6 +7,7 @@ export class StockfishEngine {
     private onMoveCallback?: (bestMove: string) => void;
     private onReadyCallback?: () => void;
     private multiPV = 1;
+    private maxMultiPV = 1;
     private candidateDepth = 0;
     private candidateMoves = new Map<number, string>();
     private ready = false;
@@ -67,13 +68,14 @@ export class StockfishEngine {
                     / (StockfishEngine.MAX_ELO - StockfishEngine.MIN_ELO),
             ),
         );
-        this.multiPV = Math.round(
+        this.maxMultiPV = Math.round(
             StockfishEngine.MAX_MULTI_PV - progress * (StockfishEngine.MAX_MULTI_PV - 1),
         );
-        this.sendCommand(`setoption name MultiPV value ${this.multiPV}`);
     }
 
     public calculateBestMove(fen: string, depth = 15, onMove: (move: string) => void): void {
+        this.multiPV = Math.floor(Math.random() * this.maxMultiPV) + 1;
+        this.sendCommand(`setoption name MultiPV value ${this.multiPV}`);
         this.onMoveCallback = onMove;
         this.candidateDepth = 0;
         this.candidateMoves.clear();

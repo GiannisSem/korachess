@@ -5,7 +5,7 @@ import {useStockfish} from "../services/useStockfish.ts";
 import {useEffect, useState} from "react";
 import type {Rank} from "../types.ts";
 import type {Color, Move} from "chess.js";
-import type {GameEndReason, PgnHeaders} from "./ChessBoard/types.ts";
+import type {GameEndReason, PgnHeaders} from "./ChessBoard";
 
 interface FreeplayGameProps {
     line: string;
@@ -33,7 +33,6 @@ function FreeplayGame({line, color, rank, pgnHeaders, handleEndGame}: FreeplayGa
 
     const handlePlayerMove = (fen: string, move: Move | undefined) => {
         if (inTheory && counter < lineMoves.length-2) {
-            console.log("move: " + lineMoves[counter+3]);
             setCounter(counter + 2);
             const tmove = getCurrentMove(lineMoves[counter+1]);
 
@@ -46,7 +45,6 @@ function FreeplayGame({line, color, rank, pgnHeaders, handleEndGame}: FreeplayGa
         }
 
         setInTheory(false);
-        console.log("stockfish")
         requestEngineMove({
             engine: stockfish,
             fen,
