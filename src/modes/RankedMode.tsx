@@ -106,15 +106,20 @@ function RankedMode() {
         <>
             { !onGame && (
                 <div>
-                    <h2>Blitz ({modeTime.blitz / 60000}+{increment / 1000})</h2>
+                    <h2>⚡Blitz ({modeTime.blitz / 60000}+{increment / 1000})</h2>
                     <h3>{blitzRaw.rank}</h3>
-                    <ResultGrid list={blitzRaw.matches} n={6} />
-                    <Button content="New blitz game" onClick={() => startGame("blitz")} />
+                    <div style={{flex: 1, display: "flex", flexDirection: "column", gap: "7px"}}>
+                        <ResultGrid list={blitzRaw.matches} n={6} />
+                        <Button content="New blitz game" onClick={() => startGame("blitz")} />
+                    </div>
 
-                    <h2>Rapid ({modeTime.rapid / 60000}+{increment / 1000})</h2>
+
+                    <h2>⏱ Rapid ({modeTime.rapid / 60000}+{increment / 1000})</h2>
                     <h3>{rapidRaw.rank}</h3>
-                    <ResultGrid list={rapidRaw.matches} n={6} />
-                    <Button content="New rapid game" onClick={() => startGame("blitz")} />
+                    <div style={{flex: 1, display: "flex", flexDirection: "column", gap: "7px"}}>
+                        <ResultGrid list={rapidRaw.matches} n={6} />
+                        <Button content="New rapid game" onClick={() => startGame("blitz")} />
+                    </div>
                 </div>
             )}
 

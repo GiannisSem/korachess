@@ -83,7 +83,7 @@ function OpeningsMode() {
                     </>
                 ) : (
                     <div className="openings-course">
-                        <h1>{course.opening + " -> " + course.lines[lineIndex][0] }</h1>
+                        <h1>{course.opening + "➡" + course.lines[lineIndex][0] }</h1>
 
                         <div className="board-stage">
                             <ChessBoard
@@ -99,17 +99,34 @@ function OpeningsMode() {
                             />
                         </div>
 
-                        <Button content={mode === "Study" ? "Drill" : "Study"} onClick={() => setMode((mode === "Study") ? "Drill" : "Study")} />
-                        <Button content="Back" onClick={() => {
-                            setCourse(null);
-                            setColor(undefined);
-                            setLineIndex(0);
-                            setCounter(color === "w" ? -1 : 0);
-                            setEngineMove(undefined);
-                            setLineFinished(false);
-                        }} />
-                        <Button content="Previus line" onClick={() => handleChangeLine(-1)} />
-                        <Button content="Next line" onClick={() => handleChangeLine(1)} />
+                        <div className="opening-controls">
+                            <Button content="Back" onClick={() => {
+                                setCourse(null);
+                                setColor(undefined);
+                                setLineIndex(0);
+                                setCounter(color === "w" ? -1 : 0);
+                                setEngineMove(undefined);
+                                setLineFinished(false);
+                            }} />
+                            <div className="line-navigation" aria-label="Line navigation">
+                                <Button
+                                    content="⬅"
+                                    ariaLabel="Previous line"
+                                    disabled={lineIndex === 0}
+                                    onClick={() => handleChangeLine(-1)}
+                                />
+                                <span className="line-indicator">
+                                    Line {lineIndex + 1} of {course.lines.length}
+                                </span>
+                                <Button
+                                    content="➡"
+                                    ariaLabel="Next line"
+                                    disabled={lineIndex >= course.lines.length - 1}
+                                    onClick={() => handleChangeLine(1)}
+                                />
+                            </div>
+                            <Button content={mode === "Study" ? "🧠 Drill" : "📖 Study"} onClick={() => setMode((mode === "Study") ? "Drill" : "Study")} />
+                        </div>
                     </div>
                 )
             }

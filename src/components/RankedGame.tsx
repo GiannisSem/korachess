@@ -71,9 +71,11 @@ function RankedGame({color, firstMove, rank, time, increment, pgnHeaders, handle
                 engineMove={engineMove}
                 resign={resign}
             />
-            <Timer startTime={time} active={yourTurn} increment={increment} onEnd={() => setResign(true)} />
-            { !end && <Button content={"Resign"} onClick={() => setResign(true)} /> }
-            { end && <Button content={"Back"} onClick={onEnd} /> }
+            <div style={{flex: 1, display: "flex", justifyContent: "space-between", padding: 10}}>
+                <Timer startTime={time} active={yourTurn} increment={increment} onEnd={() => setResign(true)} />
+                { !end && <Button content={"Resign"} onClick={() => setResign(true)} /> }
+                { end && <Button content={"Back"} onClick={onEnd} /> }
+            </div>
         </div>
     )
 }
