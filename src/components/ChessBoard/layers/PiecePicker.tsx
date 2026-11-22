@@ -2,6 +2,7 @@ import React from 'react';
 import type {PieceSymbol} from 'chess.js';
 import type {PendingPromotion} from '../types';
 import { squareToPercent } from '../utils/coordinates';
+import pieceAssets from '../../../assets/pieceAssets';
 
 interface PiecePickerProps {
     promotion: PendingPromotion;
@@ -45,7 +46,7 @@ export const PiecePicker: React.FC<PiecePickerProps> = ({ promotion, reversed, o
                     }}
                 >
                     <img
-                        src={`/src/assets/pieces/${promotion.color}${p.toUpperCase()}.svg`}
+                        src={pieceAssets[`${promotion.color}${p.toUpperCase()}`]}
                         alt={p}
                         style={{ width: '80%', height: '80%' }}
                     />

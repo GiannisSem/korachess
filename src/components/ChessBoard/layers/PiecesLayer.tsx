@@ -2,6 +2,7 @@ import React from 'react';
 import { Chess } from 'chess.js';
 import { squareToPercent } from '../utils/coordinates';
 import styles from '../ChessBoard.module.css';
+import pieceAssets from '../../../assets/pieceAssets';
 
 interface PiecesLayerProps {
     game: Chess;
@@ -39,7 +40,7 @@ export const PiecesLayer: React.FC<PiecesLayerProps> = ({ game, reversed }) => {
                         }}
                     >
                         <img
-                            src={`/src/assets/pieces/${fileName}.svg`}
+                            src={pieceAssets[fileName]}
                             alt={fileName}
                             draggable={false}
                         />
